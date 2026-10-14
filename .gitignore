@@ -17,3 +17,13 @@ signing.properties
 .idea/
 *.iml
 .DS_Store
+
+# Notas locales de desarrollo; no publicar
+ACTUALIZACION-*
+ENTREGA-*
+VERIFICACION*
+HISTORY.md
+BUILD_PREFERENCES.md
+PRUEBAS-SIN-TRANSFERIR.md
+REVISION-SERVIDORES.md
+RELEASE.md

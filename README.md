@@ -43,11 +43,11 @@ Para release, configura mediante variables de entorno ANIMETV_KEYSTORE (ruta a t
 ./gradlew assembleRelease -PallAbis=true  # ARM32, ARM64 y universal
 ```
 
-En Windows usa gradlew.bat. Los resultados están en app/build/outputs/apk/. Para tu propia distribución usa un certificado propio y conserva una copia privada: una firma diferente no puede actualizar las instalaciones oficiales existentes. Las entregas actuales conservan el certificado de desarrollo original para permitir actualizar las versiones anteriores; no se proporciona su clave privada. Ver RELEASE.md.
+En Windows usa gradlew.bat. Los resultados están en app/build/outputs/apk/. Para tu propia distribución usa un certificado propio y conserva una copia privada: una firma diferente no puede actualizar las instalaciones oficiales existentes. Las entregas actuales conservan el certificado de desarrollo original para permitir actualizar las versiones anteriores; no se proporciona su clave privada.
 
 ## Arquitectura y comprobaciones
 
-Cinco bibliotecas de fuente, extractores compartidos y contratos en source-core. Interfaz, reproductor e historial permanecen en app. Ver ARCHITECTURE.md y VERIFICACION-0.30.0.json para los resultados de esta entrega. Las pruebas usan Robolectric; no sustituyen una prueba física con mando y reproducción en la TV.
+Cinco bibliotecas de fuente, extractores compartidos y contratos en source-core. Interfaz, reproductor e historial permanecen en app. Ver ARCHITECTURE.md. La última comprobación aprobó 279 pruebas y lint no encontró errores. Las pruebas usan Robolectric; no sustituyen una prueba física con mando y reproducción en la TV.
 
 ## Limitaciones conocidas
 
@@ -64,7 +64,5 @@ Incluye versión de AnimeTV, dispositivo, versión de Android, fuente, anime, ep
 ## Licencia
 
 El código original de AnimeTV se distribuye bajo GPL-3.0-only; ver LICENSE y THIRD_PARTY_NOTICES.md. Los componentes externos conservan sus licencias. Acompañar los APK con AnimeTV-0.30.0-source.zip y AnimeTV-0.30.0-third-party-source.zip. Los logos identifican a sus respectivos proveedores; la licencia del código no concede derechos sobre marcas, imágenes ni vídeos de esos sitios. AnimeTV no aloja vídeos ni está afiliada a las fuentes.
-
-Las notas antiguas están en HISTORY.md; no describen necesariamente la versión actual.
 
 Consulta [PRIVACY.md](PRIVACY.md) para conocer los datos locales y las conexiones externas.
