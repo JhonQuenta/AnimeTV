@@ -1,0 +1,108 @@
+{
+  "version": "0.30.0",
+  "versionCode": 43,
+  "tests": {
+    "tests": 279,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "app": {
+      "errors": 0,
+      "warnings": 53,
+      "warningTypes": {
+        "UnusedAttribute": 1,
+        "DiscouragedApi": 2,
+        "SetJavaScriptEnabled": 1,
+        "DataExtractionRules": 1,
+        "DrawAllocation": 4,
+        "NotifyDataSetChanged": 1,
+        "ObsoleteSdkInt": 1,
+        "StaticFieldLeak": 1,
+        "UnusedResources": 6,
+        "MonochromeLauncherIcon": 1,
+        "IconLocation": 1,
+        "ViewConstructor": 2,
+        "SetTextI18n": 23,
+        "RtlHardcoded": 8
+      }
+    },
+    "source-core": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    },
+    "extractors": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    },
+    "sources/animeav1": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    },
+    "sources/tioanime": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    },
+    "sources/latanime": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    },
+    "sources/animelatinohd": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    },
+    "sources/jkanime": {
+      "errors": 0,
+      "warnings": 0,
+      "warningTypes": {}
+    }
+  },
+  "buildSucceeded": true,
+  "apks": [
+    {
+      "file": "AnimeTV-0.30.0-armeabi-v7a.apk",
+      "bytes": 14102789,
+      "sha256": "851ce8a713158f67e76e1b9a0ff12050b69968ca49b522b575b2e7364ddf2383",
+      "abis": [
+        "armeabi-v7a"
+      ],
+      "signatureVerified": true,
+      "certificateSha256": "3445f3dfbb5145d5639438927e708317217a4905db6ec17f446165632157d00b"
+    },
+    {
+      "file": "AnimeTV-0.30.0-arm64-v8a.apk",
+      "bytes": 14857961,
+      "sha256": "92132806b018da8e8a92114021f9c7229feeac4bf17a66882f80986397bc7ce8",
+      "abis": [
+        "arm64-v8a"
+      ],
+      "signatureVerified": true,
+      "certificateSha256": "3445f3dfbb5145d5639438927e708317217a4905db6ec17f446165632157d00b"
+    },
+    {
+      "file": "AnimeTV-0.30.0-universal.apk",
+      "bytes": 22017056,
+      "sha256": "1ec97d1b192a4953cc07ce733461f5fb01abe4e2d18136c0f0157bcc0d6361d0",
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "signatureVerified": true,
+      "certificateSha256": "3445f3dfbb5145d5639438927e708317217a4905db6ec17f446165632157d00b"
+    }
+  ],
+  "ratingsEnabled": false,
+  "bundledSources": 5,
+  "dynamicExtensionsImplemented": false,
+  "physicalTvValidationPending": true,
+  "arm64PhysicalValidationPending": true,
+  "signing": "External credentials; original development certificate retained for update compatibility",
+  "warningReview": "Existing warnings include fixed TV orientation, Spanish literals, drawing allocations, and a static browser request. ProtectedPages.detach closes that request in MainActivity.onDestroy. No warnings were suppressed. No playback/UI behavior changed for this release."
+}

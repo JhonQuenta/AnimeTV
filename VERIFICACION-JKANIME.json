@@ -1,0 +1,21 @@
+{
+  "version": "0.20.0",
+  "versionCode": 33,
+  "tests": {
+    "tests": 208,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintErrors": 0,
+  "lintWarnings": 50,
+  "apkGenerated": false,
+  "priorApkUnchanged": true,
+  "automaticAv1Filtering": false,
+  "liveSamples": [
+    "https://jkanime.net/psyren/2/",
+    "https://jkanime.net/sword-art-online/11/"
+  ],
+  "physicalTvTest": "pending; no APK generated at user request",
+  "networkEvidence": "VERIFICACION-JKANIME.txt"
+}

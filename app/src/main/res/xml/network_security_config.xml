@@ -1,0 +1,5 @@
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors><certificates src="system"/><certificates src="@raw/gts_root_r4"/></trust-anchors>
+    </base-config>
+</network-security-config>

@@ -1,0 +1,38 @@
+{
+  "version": "0.23.0",
+  "versionCode": 36,
+  "tests": {
+    "tests": 257,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 56
+  },
+  "apkGenerated": false,
+  "publishedApkUnchanged": true,
+  "logos": {
+    "animeav1": "official SVG paths",
+    "tioanime": "official header mark 54x60",
+    "jkanime": "official header mark 77x64",
+    "latanime": "previously downloaded official header mark 245x265; current DNS unavailable",
+    "animelatinohd": "existing 256x256"
+  },
+  "cancel": "centered fixed footer, close icon",
+  "latanimePortrait": "real ficha poster even with existing type/status; persisted for reuse",
+  "backdrops": {
+    "animeav1": "own /backdrops/ image matched to poster ID/title",
+    "tioanime": "figure.backdrop, /uploads/fondos/",
+    "animelatinohd": "own banner field, TMDB w1280",
+    "latanime": "same /thumbs/portada/ image in every episode, at least two",
+    "jkanime": "neutral background"
+  },
+  "liveLimitations": [
+    "Latanime DNS unavailable; original saved HTML and cached official logo used",
+    "physical TV validation pending",
+    "Jikan live scoring remains pending as recorded in 0.22.0"
+  ],
+  "commands": "testDebugUnitTest lintRelease; no assembleRelease"
+}

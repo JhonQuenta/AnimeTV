@@ -1,0 +1,9 @@
+apply plugin: 'com.android.library'
+android {
+    namespace 'pe.animetv.modules' + project.path.replace(':', '.').replace('-', '_')
+    compileSdk 36
+    defaultConfig { minSdk 23 }
+    compileOptions { coreLibraryDesugaringEnabled true; sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies { coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

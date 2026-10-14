@@ -1,0 +1,742 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<title>Ver Anime Online - todos los animes gratis</title>
+<meta content="fixture-token" name="csrf-token"/>
+<meta content="La mejor pagina para Ver Anime Online Gratis, mira los ultimos capitulos de los animes del momento sin ninguna restriccion | ver Online y descargar" name="description"/>
+<meta content="anime online español, anime online gratis, anime online naruto, anime online naruto shippuden, anime online sub español, anime online free, anime online latino, anime online bleach, animes, anime, ecchi, anime online, Naruto Shippuden, Anime online, Anime en Descarga Directa, Ver Anime Online." name="keywords"/>
+<meta content="Ver Anime Online - todos los animes gratis" property="og:title"/>
+<meta content="https://jkanime.net/img/web.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="JkAnime" property="og:site_name"/>
+<meta content="https://jkanime.net" property="og:url"/>
+<link href="https://cdn.jkdesa.com/assets3/css/img/favicon.ico?v=2.0.204" rel="icon" type="image/x-icon"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta charset="utf-8"/>
+<meta content="es" http-equiv="content-language"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Css Styles -->
+<link href="https://cdn.jkdesa.com/assets3/css/bootstrap.min.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.35.0/dist/tabler-icons.min.css" rel="stylesheet"/>
+<link href="https://cdn.jkdesa.com/assets3/css/elegant-icons.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/plyr.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/nice-select.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/owl.carousel.min.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/slicknav.min.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/jquery-confirm.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/jquery.toast.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="https://cdn.jkdesa.com/assets3/css/style.css?v=2.0.204" rel="stylesheet" type="text/css"/>
+<link href="//connect.facebook.net" rel="dns-prefetch"/>
+<link href="//facebook.com" rel="dns-prefetch"/>
+<link href="//apis.google.com" rel="dns-prefetch"/>
+<link href="//google-analytics.com" rel="dns-prefetch"/>
+
+</head>
+<body>
+<div id="modal"></div>
+<header class="header">
+<div class="container-head">
+<div class="row">
+<div class="col-5">
+<div class="header__logo">
+<a href="https://jkanime.net">
+<img alt="Logo JkAnime" class="logoweb" src="https://cdn.jkdesa.com/assets3/css/img/jkanimenet.png?v=2.0.204"/>
+</a>
+</div>
+</div>
+<div class="col">
+<div class="header__right row">
+<label class="switchBtn">
+
+<div class="slidebtn ti"></div>
+</label>
+<form action="https://jkanime.net/buscar" autocomplete="off" class="col form_search2" data-ajax="https://jkanime.net/ajax_search" id="form_search_ajax" method="get" role="search">
+
+<button class="buton-form" id="btn_qsubmit" type="submit"><i class="search"></i></button>
+<div id="search_results" style="display: none;"><div class="lds-ellipsis" id="qloader"><div></div><div></div><div></div><div></div></div></div><div class="search_history" style="display: none;"><h3>Buscado recientemente:</h3><ul class="history_list"></ul></div>
+</form>
+<b class="screen-overlay"></b>
+<div id="notify" style="display: none;"><i aria-hidden="true" class="ti ti-bell-filled"></i></div>
+<div class="notify-list" style="display: none;">
+<nav class="not-type mb-1"><button data-show="global">Global</button><button data-show="comentarios">Comentarios</button></nav>
+<ul></ul>
+</div>
+<button class="usr-menu entrar" type="submit"><i class="ti not ti-user-filled"></i></button>
+<ul id="authmenu" style="display: none;">
+<div id="usrinfo"><a class="ed" href="https://jkanime.net/dash/editar-perfil">Editar perfil</a></div>
+<hr/>
+<li class="auth"><a href="https://jkanime.net/usuario/$me"><i aria-hidden="true" class="ti ti-user"></i> Mi perfil</a></li>
+<li class="auth"><a href="https://jkanime.net/dash/comentarios"><i aria-hidden="true" class="ti ti-message"></i> Comentarios</a></li>
+<li class="auth"><a href="https://jkanime.net/notificaciones"><i aria-hidden="true" class="ti ti-bell"></i> Notificaciones</a></li>
+<li class="auth"><a href="https://jkanime.net/dash/solicitudes"><i aria-hidden="true" class="ti ti-users"></i> Solicitudes</a></li>
+<li class="auth"><a href="https://jkanime.net/dash/listas"><i aria-hidden="true" class="ti ti-list"></i> Mis listas</a></li>
+<li class="auth"><a href="https://jkanime.net/guardado"><i aria-hidden="true" class="ti ti-shield-plus"></i> Guardado</a></li>
+<li><a href="https://jkanime.net/historial"><i aria-hidden="true" class="ti ti-history"></i> Historial</a></li>
+<li class="auth"><a class="logdom salir" href="/salir"><i aria-hidden="true" class="ti ti-sign-out"></i> Salir</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="page-content">
+<ins class="604c7625" data-cp-domain="Jkanime.net" data-cp-host="3a30daa6132e4053a9e719ba96b7adc3|Jkanime.net" data-key="13f66f3b-27de-46da-8e3a-432dd5146afe"></ins>
+<section class="hero">
+<div class="container">
+<div class="row">
+<div class="hero__slider owl-carousel">
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_3b3f698bfe9224291245d8d79a283283.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> En emision</span>
+</div>
+<h2>Dragon Ball Super: Beerus</h2>
+<p>Dragon Ball Super: Beerus, un proyecto que se puso en marcha hace unos años, es la nueva edición MEJORADA del anime Dragon Ball Super. MEJORADA con la última tecnología visual, cada escena —especialmente las de combate— resulta aún más envolvente, lo que ofrece una reproducción más fiel y detallada de la obra original ...</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/dragon-ball-super-beerus/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/dragon-ball-super-beerus/1"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_e4e83d48e6952a960881b6b18cb4ad0e.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> En emision</span>
+</div>
+<h2>Tsuihou sareta Tensei Juukishi wa Game C...</h2>
+<p>El día en que un niño cumple quince años, se somete al Ritual de la Bendición Divina. Como descendiente de una estirpe de maestros espadachines, se suponía que Elymas iba a suceder a su padre. Sin embargo, obtiene la clase defectuosa, la de Caballero Pesado, y no solo pierde su estatus como futuro cabeza de familia, si...</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru/15"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_e010e9484c02e8d5d73ea8924e6f1564.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> Concluido</span>
+</div>
+<h2>Seihantai na Kimi to Boku 2nd Season</h2>
+<p>Segunda temporada de Seihantai na Kimi to Boku</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/seihantai-na-kimi-to-boku-2nd-season/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/seihantai-na-kimi-to-boku-2nd-season/13"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_e0b943cdf8b4af3eb7228673138501fd.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> En emision</span>
+</div>
+<h2>Tsuihou sareta Tensei Juukishi wa Game C...</h2>
+<p>El día en que un niño cumple quince años, se somete al Ritual de la Bendición Divina. Como descendiente de una estirpe de maestros espadachines, se suponía que Elymas iba a suceder a su padre. Sin embargo, obtiene la clase defectuosa, la de Caballero Pesado, y no solo pierde su estatus como futuro cabeza de familia, si...</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru/14"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_829d291a999fc7705554679a809bc446.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> En emision</span>
+</div>
+<h2>One Piece</h2>
+<p>Una historia épica de piratas, donde narra la historia de "Monkey D. Luffy" quien cuando tenia 7 años, comió accidentalmente una "Akuma no mi"(Fruta del diablo) la cual le convirtió en un hombre de goma. Por otra parte "Gol D. Roger" conocido como "El rey de los Piratas" quien fuera ejecutado por la Marine, habló antes...</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/one-piece/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/one-piece/1180"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_6349f16d1d0ec7dd3d2001305a42b472.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> Concluido</span>
+</div>
+<h2>Mushoku Tensei III: Isekai Ittara Honki ...</h2>
+<p>Tercera temporada de Mushoku Tensei III</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/mushoku-tensei-iii-isekai-ittara-honki-dasu/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/mushoku-tensei-iii-isekai-ittara-honki-dasu/14"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_66ed2991ef4f231afe3a6ff1a949a21b.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> Concluido</span>
+</div>
+<h2>Seihantai na Kimi to Boku 2nd Season</h2>
+<p>Segunda temporada de Seihantai na Kimi to Boku</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/seihantai-na-kimi-to-boku-2nd-season/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/seihantai-na-kimi-to-boku-2nd-season/12"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_5c5864ffdd73b664078d7809060165a5.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> En emision</span>
+</div>
+<h2>Tsuihou sareta Tensei Juukishi wa Game C...</h2>
+<p>El día en que un niño cumple quince años, se somete al Ritual de la Bendición Divina. Como descendiente de una estirpe de maestros espadachines, se suponía que Elymas iba a suceder a su padre. Sin embargo, obtiene la clase defectuosa, la de Caballero Pesado, y no solo pierde su estatus como futuro cabeza de familia, si...</p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/tsuihou-sareta-tensei-juukishi-wa-game-chishiki-de-musou-suru/13"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+<div class="hero__items set-bg" data-setbg="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_d13951dc768579376627b7cd05f82330.jpg">
+<div class="row align-items-end">
+<div class="col-lg-8 col-12">
+<div class="hero__text">
+<div class="ainfo">
+<span><i class="ti ti-movie"></i> Serie</span>
+<span><i class="ti ti-device-tv-old"></i> Concluido</span>
+</div>
+<h2>Otome Game Sekai wa Mob ni Kibishii Seka...</h2>
+<p>Segunda temporada de Otome Game Sekai wa Mob ni Kibishii Sekai desu </p>
+</div>
+</div>
+<div class="col-lg-4 col-12 slider-btns"><a class="slider-show" href="https://jkanime.net/otome-game-sekai-wa-mob-ni-kibishii-sekai-desu-2/"><i class="ti ti-info-circle"></i> Detalles</a><a class="slider-show" href="https://jkanime.net/otome-game-sekai-wa-mob-ni-kibishii-sekai-desu-2/12"><i class="ti ti-player-play"></i> Ver ahora</a></div>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+
+<section class="contenido">
+<div class="container">
+<div class="row">
+<section class="destacados guardados spad col-12 p-3 p-lg-0">
+<div class="section-title init">
+<h4>Continuar mirando...</h4>
+<div class="init_select"><select class="preferencias_inicio" id="guardados_orden">
+<option value="1">Historial</option>
+<option value="2">Orden Personalizado</option>
+<option value="3">Recientes</option>
+<option value="4">Mirando</option>
+</select>
+<a class="see_all btn btn-primary" data-guardado="https://jkanime.net/guardado" data-historial="https://jkanime.net/historial" href="#" id="mas_recientes">Ver todo</a>
+</div>
+</div>
+<div id="recientes_div">
+<div class="row recientes_div"></div>
+<div id="loader"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+<div id="loadbtn"><div data-tipo="recientes" id="loadmore" style="display: none;">Mostrar más</div></div>
+</div>
+</section>
+<div class="col-12 p-3 p-lg-0">
+</div>
+<div class="col-lg-9 p-4 p-md-0 pr-lg-5 col-md-12 col-sm-12 mt-5">
+<div class="section-title">
+<h4><i class="ti ti-clock-play"></i> Programación</h4>
+</div>
+<div class="trending__anime">
+<div class="row p-2">
+<ul class="nav nav-tabs custom-tabs-home mb-3" role="tablist">
+<li class="nav-item">
+<a aria-controls="Animes" aria-selected="true" class="nav-link active" data-toggle="tab" href="#animes" id="animes-tab" role="tab">Animes</a>
+</li>
+<li class="nav-item">
+<a aria-controls="Donghuas" aria-selected="false" class="nav-link" data-toggle="tab" href="#donghuas" id="donghuas-tab" role="tab">Donghuas</a>
+</li>
+<li class="nav-item">
+<a aria-controls="Ovas &amp; Especiales" aria-selected="false" class="nav-link" data-toggle="tab" href="#ovas" id="ovas-tab" role="tab">Ovas</a>
+</li>
+<div data-tooltip="Modo antispoiler" id="anti_spoiler"><i class="ti ti-eye"></i></div>
+</ul>
+</div>
+<div class="tab-content">
+<div aria-labelledby="animes-tab" class="tab-pane fade show active" id="animes" role="tabpanel">
+<div class="row mode1 autoimage row-cols-md-3 row-cols-2 row-cols-lg-4">
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/psyren/2/"><div class="d-thumb"><img alt="Psyren - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/psyren.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_9b268372c5e8b965608617aab1eb3188.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Psyren</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/tensei-goblin-dakedo-shitsumon-aru/3/"><div class="d-thumb"><img alt="Tensei Goblin dakedo Shitsumon Aru? - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/tensei-goblin-dakedo-shitsumon-aru.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_cb4ead2c0ef3579352b70985e64075c2.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 3</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Tensei Goblin dakedo Shitsumon Aru?</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu/2/"><div class="d-thumb"><img alt="Doumo, Suki na Hito ni Horegusuri wo Irai sareta Majo desu. - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/doumo-suki-na-hito-ni-horegusuri-wo-irai-sareta-majo-desu.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_4ac139745be91247556e4f9064ffaf97.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Doumo, Suki na Hito ni Horegusuri wo Irai sareta Majo desu.</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/meitantei-precure/37/"><div class="d-thumb"><img alt="Meitantei Precure! - 37" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/meitantei-precure.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_d486a45f9759848c9db186d68ed8c418.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 37</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Meitantei Precure!</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/umayuru-full-gate/3/"><div class="d-thumb"><img alt="Umayuru: Full Gate! - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/umayuru-full-gate.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_0e6be8d9a8ad9e180298dd563f318519.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 3</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Umayuru: Full Gate!</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/dark-summoner-to-dekiteiru/2/"><div class="d-thumb"><img alt="Dark Summoner to Dekiteiru - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/dark-summoner-to-dekiteiru.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_f2edb426cf89e1ada30d14e0b4f462f6.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Dark Summoner to Dekiteiru</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/kanojo-no-tomodachi/2/"><div class="d-thumb"><img alt="Kanojo no Tomodachi - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/kanojo-no-tomodachi.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_2ccde39b94334f5d0321d9b508e92c76.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Kanojo no Tomodachi</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/ao-no-hako-season-2/2/"><div class="d-thumb"><img alt="Ao no Hako Season 2 - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/ao-no-hako-season-2.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_3372982fed77b976c27eed91ae021f41.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Hoy</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Ao no Hako Season 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/yozakura-san-chi-no-daisakusen-2nd-season-part-2/1/"><div class="d-thumb"><img alt="Yozakura-san Chi no Daisakusen 2nd Season Part 2 - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/yozakura-san-chi-no-daisakusen-2nd-season-part-2.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_6b8fd7a23703b8805b2ac6a86decc348.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 1</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Yozakura-san Chi no Daisakusen 2nd Season Part 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/kanata-kara/2/"><div class="d-thumb"><img alt="Kanata kara - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/kanata-kara.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_8d3fdeca319b99d97a1380be89008146.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Kanata kara</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/hotel-inhumans-2nd-season/2/"><div class="d-thumb"><img alt="Hotel Inhumans 2nd Season - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/hotel-inhumans-2nd-season.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_1604041ef2741c1ace6489b524678867.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Hotel Inhumans 2nd Season</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/dragon-ball-super-beerus/1/"><div class="d-thumb"><img alt="Dragon Ball Super: Beerus - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/dragon-ball-super-beerus.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_3b3f698bfe9224291245d8d79a283283.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 1</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Dragon Ball Super: Beerus</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/diamond-no-ace-act-ii-second-season-part-2/1/"><div class="d-thumb"><img alt="Diamond no Ace: Act II Second Season Part 2 - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/diamond-no-ace-act-ii-second-season-part-2.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_590bbb7fd0a0e12e65268b54aed37acd.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 1</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Diamond no Ace: Act II Second Season Part 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/tensei-kizoku-kantei-skill-de-nariagaru-3rd-season/3/"><div class="d-thumb"><img alt="Tensei Kizoku, Kantei Skill de Nariagaru 3rd Season - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/tensei-kizoku-kantei-skill-de-nariagaru-3rd-season.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_d630d48320ca49f4f20ab891c9e085bf.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 3</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Tensei Kizoku, Kantei Skill de Nariagaru 3rd Season</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku/1/"><div class="d-thumb"><img alt="Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_81ec48fa233d47e1c36af7cac01ae270.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 1</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/tank-chair/2/"><div class="d-thumb"><img alt="Tank Chair - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/tank-chair.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_cbcd81fe80b7282047511c54e8199666.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Tank Chair</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/tempal-item-no-chikara/3/"><div class="d-thumb"><img alt="Tempal: Item no Chikara - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/tempal-item-no-chikara.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_dc3326116a53b426d020a3ed89cdd0af.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 3</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Tempal: Item no Chikara</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/yowaki-max-reijou-nanoni-ratsuwan-konyakusha-sama-no-kake-ni-notte-shimatta/2/"><div class="d-thumb"><img alt="Yowaki Max Reijou nanoni, Ratsuwan Konyakusha-sama no Kake ni Notte Shimatta - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/yowaki-max-reijou-nanoni-ratsuwan-konyakusha-sama-no-kake-ni-notte-shimatta.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_56a22ec9ef2159ba4341a05d07c2d9c0.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Yowaki Max Reijou nanoni, Ratsuwan Konyakusha-sama no Kake ni Notte Shimatta</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/ojisan-wa-kawaii-mono-ga-osuki/2/"><div class="d-thumb"><img alt="Ojisan wa Kawaii Mono ga Osuki. - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/ojisan-wa-kawaii-mono-ga-osuki.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_ab5a6c9af3981ee6e2bbc8e35e5f9b1a.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Ojisan wa Kawaii Mono ga Osuki.</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mezametara-saikyou-soubi-to-uchuusenmochi-datta-node-ikkodate-mezashite-youhei-toshite-jiyuu-ni-ikitai/2/"><div class="d-thumb"><img alt="Mezametara Saikyou Soubi to Uchuusenmochi Datta node, Ikkodate Mezashite Youhei toshite Jiyuu ni Iki" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mezametara-saikyou-soubi-to-uchuusenmochi-datta-node-ikkodate-mezashite-youhei-toshite-jiyuu-ni-ikitai.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_02297e71d87482cc8e8a4f8a18cc1754.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mezametara Saikyou Soubi to Uchuusenmochi Datta node, Ikkodate Mezashite Youhei toshite Jiyuu ni Ikitai</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/ao-ashi-season-2/2/"><div class="d-thumb"><img alt="Ao Ashi Season 2 - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/ao-ashi-season-2.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_6aa6e4c9f32fb4a86f9b1dfba76d8290.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Ayer</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Ao Ashi Season 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/kashita-maryoku-wa-revo-barai-de-kyousei-choushuu/2/"><div class="d-thumb"><img alt='Kashita Maryoku wa "Revo Barai" de Kyousei Choushuu - 2' class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/kashita-maryoku-wa-revo-barai-de-kyousei-choushuu.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_fecd176357aa3b073f612e1dbfb84904.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Kashita Maryoku wa "Revo Barai" de Kyousei Choushuu</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/ranma-2024-3rd-season/2/"><div class="d-thumb"><img alt="Ranma ½ (2024) 3rd Season - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/ranma-2024-3rd-season.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_ba8a850a73ca49ff70d119060dc8f585.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Ranma ½ (2024) 3rd Season</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/kyoufu-collector/1/"><div class="d-thumb"><img alt="Kyoufu Collector - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/kyoufu-collector.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_36e5db5da852cd44fc5d4e34bcdf4d52.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 1</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Kyoufu Collector</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/seitokai-ni-mo-ana-wa-aru/2/"><div class="d-thumb"><img alt="Seitokai ni mo Ana wa Aru! - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/seitokai-ni-mo-ana-wa-aru.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_dffc205c9df17c217b352c64485eadb2.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Seitokai ni mo Ana wa Aru!</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/magical-explorer/3/"><div class="d-thumb"><img alt="Magical★Explorer - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/magical-explorer.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_d57ae43a0b39c6c42655d5f3d2c78553.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 3</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Magical★Explorer</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/vertex-force/2/"><div class="d-thumb"><img alt="Vertex Force - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/vertex-force.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_7abbac7c63278a196b3197c91df39778.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Vertex Force</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/zombie-sagashitemasu/2/"><div class="d-thumb"><img alt="#Zombie Sagashitemasu - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/zombie-sagashitemasu.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_323dafca04eb9113914ad6c4285b8856.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">#Zombie Sagashitemasu</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/marronnier-oukoku-no-shichinin-no-kishi/2/"><div class="d-thumb"><img alt="Marronnier Oukoku no Shichinin no Kishi - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/marronnier-oukoku-no-shichinin-no-kishi.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_cd37fe3cc20152b64a07ac1a36c05b2d.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Marronnier Oukoku no Shichinin no Kishi</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/black-clover-2nd-season/2/"><div class="d-thumb"><img alt="Black Clover 2nd Season - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/black-clover-2nd-season.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_24ddd58f63462c47adaf56931a91bbc7.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 2</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Black Clover 2nd Season</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mahou-no-shimai-lulutto-lilly-part-2/1/"><div class="d-thumb"><img alt="Mahou no Shimai Lulutto Lilly Part 2 - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mahou-no-shimai-lulutto-lilly-part-2.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_0c9b306efc181d6f468f850244fa7147.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 1</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mahou no Shimai Lulutto Lilly Part 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/ghost-meets-gal/6/"><div class="d-thumb"><img alt="Ghost Meets Gal! - 6" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/ghost-meets-gal.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_afc5ee517344e521ed35b7b636011d43.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 6</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Ghost Meets Gal!</h5></div></a></div></div>
+</div>
+</div>
+<div aria-labelledby="donghuas-tab" class="tab-pane fade" id="donghuas" role="tabpanel">
+<div class="row mode1 autoimage row-cols-md-3 row-cols-2 row-cols-lg-4">
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/80/"><div class="d-thumb"><img alt="Mushen Ji - 80" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_9528427a9c1c11e029a88fb94a321617.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 80</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/93/"><div class="d-thumb"><img alt="Mushen Ji - 93" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_612683b633f16054dd548ca5bec3ab3a.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 93</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/91/"><div class="d-thumb"><img alt="Mushen Ji - 91" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_31b7764f645bda6839a328f078e0202d.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 91</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/89/"><div class="d-thumb"><img alt="Mushen Ji - 89" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_07d36270e7e68ae81fba4fa1a3724b42.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 89</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/87/"><div class="d-thumb"><img alt="Mushen Ji - 87" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_a39d6598472ea8ef70bf2ff923d7e04d.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 87</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/85/"><div class="d-thumb"><img alt="Mushen Ji - 85" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_81df5a8d5c416a7e05448e396ee9e698.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 85</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/83/"><div class="d-thumb"><img alt="Mushen Ji - 83" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_aee2493f92cbe0c7242b74345f10346b.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 83</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/81/"><div class="d-thumb"><img alt="Mushen Ji - 81" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_150b1a8190246e8de81a4db285c635e3.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 81</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/79/"><div class="d-thumb"><img alt="Mushen Ji - 79" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_9d4be760dc5fe3bbe5ed8425b7f1c50c.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 79</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/92/"><div class="d-thumb"><img alt="Mushen Ji - 92" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_fdd27f76545b5f659ef7b8dd11399902.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 92</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/90/"><div class="d-thumb"><img alt="Mushen Ji - 90" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_a90e9e2da42df19c6272d1753084791c.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 90</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/88/"><div class="d-thumb"><img alt="Mushen Ji - 88" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_12418c2dfb7089e490d146f908fe6d00.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 88</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/86/"><div class="d-thumb"><img alt="Mushen Ji - 86" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_24dac288c5a7615b15c308ae368f1b29.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 86</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/84/"><div class="d-thumb"><img alt="Mushen Ji - 84" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_8e65aba4fdef5e3e35929ce0312e168d.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 84</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/82/"><div class="d-thumb"><img alt="Mushen Ji - 82" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_bada46c30a958bf82ac1c214bfd6d19e.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 82</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 10</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/shiguang-dailiren-iii/10/"><div class="d-thumb"><img alt="Shiguang Dailiren III - 10" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/shiguang-dailiren-iii.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_ece7aa4580e838d89d18dee2a20adb8a.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 10</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Viernes 09</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Shiguang Dailiren III</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/li-xiongmao/13/"><div class="d-thumb"><img alt="Li Xiongmao - 13" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/li-xiongmao.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_9f96de91d3dc40cd6baccac71cd07cf9.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 13</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Miércoles 07</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Li Xiongmao</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/78/"><div class="d-thumb"><img alt="Mushen Ji - 78" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_9cb3bf94ef4a4f491c4e090f6883abb8.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 78</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/76/"><div class="d-thumb"><img alt="Mushen Ji - 76" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_cc1d3ba910b70b25eed32cc4a30c9ac4.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 76</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/74/"><div class="d-thumb"><img alt="Mushen Ji - 74" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_66c42539201d78235ee8a5f1cce92bbf.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 74</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/72/"><div class="d-thumb"><img alt="Mushen Ji - 72" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_367b61a4262d43380e55ec0a3b5cba44.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 72</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/70/"><div class="d-thumb"><img alt="Mushen Ji - 70" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_d07272ad1d4355ba1e26c7c86491b6e2.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 70</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/77/"><div class="d-thumb"><img alt="Mushen Ji - 77" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_05d40a3b108d650346bdd73646c2077b.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 77</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/75/"><div class="d-thumb"><img alt="Mushen Ji - 75" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_0ca68f41d8e6870acd8595661a924373.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 75</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/73/"><div class="d-thumb"><img alt="Mushen Ji - 73" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_22c0b6de5be47a0c5365a5a1a0a6bb83.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 73</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/71/"><div class="d-thumb"><img alt="Mushen Ji - 71" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_c741947dee3d9aa46ec4912a2755d69c.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 71</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Lunes 05</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/68/"><div class="d-thumb"><img alt="Mushen Ji - 68" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_11b164758028df2c2ec0cf2bc6be1b48.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 68</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 03</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/66/"><div class="d-thumb"><img alt="Mushen Ji - 66" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_12f756bb9ce1b35142ec05639550c371.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 66</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 03</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/64/"><div class="d-thumb"><img alt="Mushen Ji - 64" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_27e970e3a565d306f74240653bafd4f2.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 64</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 03</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/69/"><div class="d-thumb"><img alt="Mushen Ji - 69" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_7911f47cc81268b2548aee2c2dc78e2b.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 69</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 03</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/67/"><div class="d-thumb"><img alt="Mushen Ji - 67" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_14fc0ee58ba99ace27c23e80c0de5b41.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 67</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 03</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/mushen-ji/65/"><div class="d-thumb"><img alt="Mushen Ji - 65" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/mushen-ji.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_0fe35dd3222b69efe352db80bb53f048.jpg"/><div class="badges badges-top"><span class="badge badge-primary">Ep 65</span><span class="badge ml-2 badge-secondary"><i class="ti ti-clock-hour-5"></i> Sábado 03</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Mushen Ji</h5></div></a></div></div>
+</div>
+</div>
+<div aria-labelledby="ovas-tab" class="tab-pane fade" id="ovas" role="tabpanel">
+<div class="row mode1 autoimage row-cols-md-3 row-cols-2 row-cols-lg-4">
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/umayuru-full-gate/3/"><div class="d-thumb"><img alt="Umayuru: Full Gate! - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/umayuru-full-gate.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_0e6be8d9a8ad9e180298dd563f318519.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Umayuru: Full Gate! - 3</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/kanojo-no-tomodachi/2/"><div class="d-thumb"><img alt="Kanojo no Tomodachi - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/kanojo-no-tomodachi.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_2ccde39b94334f5d0321d9b508e92c76.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Kanojo no Tomodachi - 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/steel-ball-run-jojo-no-kimyou-na-bouken/4/"><div class="d-thumb"><img alt="Steel Ball Run: JoJo no Kimyou na Bouken - 4" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/steel-ball-run-jojo-no-kimyou-na-bouken.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_cd9cceb4bdcfbcdc67a8df62736f5ebb.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Steel Ball Run: JoJo no Kimyou na Bouken - 4</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/umayuru-full-gate/2/"><div class="d-thumb"><img alt="Umayuru: Full Gate! - 2" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/umayuru-full-gate.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_02f967bd71b29199ee4b3b2eb59317bd.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Umayuru: Full Gate! - 2</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/kanojo-no-tomodachi/1/"><div class="d-thumb"><img alt="Kanojo no Tomodachi - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/kanojo-no-tomodachi.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_aad915d43e82b9ae808166b0715e1f93.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Kanojo no Tomodachi - 1</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/steel-ball-run-jojo-no-kimyou-na-bouken/3/"><div class="d-thumb"><img alt="Steel Ball Run: JoJo no Kimyou na Bouken - 3" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/steel-ball-run-jojo-no-kimyou-na-bouken.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_9ae772f93596876fd256518cc0f236a7.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Steel Ball Run: JoJo no Kimyou na Bouken - 3</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/ganzo-bandori-chan/52/"><div class="d-thumb"><img alt="Ganzo! Bandori-chan - 52" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/ganzo-bandori-chan.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_e56147c1fd13cebcd17d0b8301286b57.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Ganzo! Bandori-chan - 52</h5></div></a></div></div>
+<div class="mb-4 d-flex align-items-stretch mb-3 dir1"><div class="card ml-2 mr-2"><a href="https://jkanime.net/umayuru-full-gate/1/"><div class="d-thumb"><img alt="Umayuru: Full Gate! - 1" class="card-img-top" data-animepic="https://cdn.jkdesa.com/assets/images/animes/image/umayuru-full-gate.jpg" src="https://cdn.jkdesa.com/assets/images/animes/video/image/jkvideo_0cebd37adebbb9f63c1dbd17411c2618.jpg"/><div class="badges badges-top"><span class="badge ONA badge-primary">ONA</span></div></div><div class="card-body d-flex flex-column"><h5 class="strlimit card-title">Umayuru: Full Gate! - 1</h5></div></a></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-3 col-md-12 col-sm-12 p-md-0 p-4 pt-0 home-widgets mt-md-5">
+<div class="trending_div scroll mt-sm-4">
+<div class="section-title">
+<h4>Animes recientes</h4>
+</div>
+<div class="row mode3 row-cols-1">
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/joshikousei-girls-high-specials/"><img alt="Joshikousei: Girl's High Specials" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/joshikousei-girls-high-specials.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/joshikousei-girls-high-specials/">Joshikousei: Girl's High Specials</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Special"> Especial </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Jueves, 25 de Mayo de 2006 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/joshikousei-girls-high/"><img alt="Joshikousei: Girl's High" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/joshikousei-girls-high.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/joshikousei-girls-high/">Joshikousei: Girl's High</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Martes, 04 de Abril de 2006 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/sanxian-lun-hui/"><img alt="Sanxian Lun Hui" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/sanxian-lun-hui.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/sanxian-lun-hui/">Sanxian Lun Hui</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 05 de Diciembre de 2025 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/kenkou-zenrakei-suiei-bu-umishou/"><img alt="Kenkou Zenrakei Suiei-bu Umishou" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/kenkou-zenrakei-suiei-bu-umishou.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/kenkou-zenrakei-suiei-bu-umishou/">Kenkou Zenrakei Suiei-bu Umishou</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Miercoles, 04 de Julio de 2007 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/kyoufu-collector/"><img alt="Kyoufu Collector" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/kyoufu-collector.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/kyoufu-collector/">Kyoufu Collector</a><span></span></h5><div class="card-info"><p class="badge currently">En emision</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Sabado, 10 de Octubre de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/bright-samurai-soul/"><img alt="Bright: Samurai Soul" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/bright-samurai-soul.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/bright-samurai-soul/">Bright: Samurai Soul</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Martes, 12 de Octubre de 2021 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/holy-knight/"><img alt="Holy Knight" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/holy-knight.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/holy-knight/">Holy Knight</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge OVA"> OVA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Miercoles, 21 de Marzo de 2012 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/tokyo-babylon/"><img alt="Tokyo Babylon" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/tokyo-babylon.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/tokyo-babylon/">Tokyo Babylon</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge OVA"> OVA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Miercoles, 21 de Octubre de 1992 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/hanarokushou-ga-akeru-hi-ni/"><img alt="Hanarokushou ga Akeru Hi ni" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/hanarokushou-ga-akeru-hi-ni.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/hanarokushou-ga-akeru-hi-ni/">Hanarokushou ga Akeru Hi ni</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 06 de Marzo de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/gochuumon-wa-usagi-desu-ka-sing-for-you/"><img alt="Gochuumon wa Usagi desu ka?? Sing for You" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/gochuumon-wa-usagi-desu-ka-sing-for-you.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/gochuumon-wa-usagi-desu-ka-sing-for-you/">Gochuumon wa Usagi desu ka?? Sing for You</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge OVA"> OVA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Jueves, 26 de Septiembre de 2019 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/gochuumon-wa-usagi-desu-ka-dear-my-sister/"><img alt="Gochuumon wa Usagi desu ka?? Dear My Sister" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/gochuumon-wa-usagi-desu-ka-dear-my-sister.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/gochuumon-wa-usagi-desu-ka-dear-my-sister/">Gochuumon wa Usagi desu ka?? Dear My Sister</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Sabado, 11 de Noviembre de 2017 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/keroro-gunsou-2026/"><img alt="Keroro Gunsou☆ 2026" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/keroro-gunsou-2026.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/keroro-gunsou-2026/">Keroro Gunsou☆ 2026</a><span></span></h5><div class="card-info"><p class="badge currently">En emision</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Sabado, 03 de Octubre de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/li-xiongmao/"><img alt="Li Xiongmao" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/li-xiongmao.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/li-xiongmao/">Li Xiongmao</a><span></span></h5><div class="card-info"><p class="badge currently">En emision</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Miercoles, 29 de Julio de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/onegai-samia-don/"><img alt="Onegai! Samia Don" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/onegai-samia-don.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/onegai-samia-don/">Onegai! Samia Don</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Martes, 02 de Abril de 1985 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/mahoutsukai-ni-taisetsu-na-koto-natsu-no-sora/"><img alt="Mahoutsukai ni Taisetsu na Koto: Natsu no Sora" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/mahoutsukai-ni-taisetsu-na-koto-natsu-no-sora.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/mahoutsukai-ni-taisetsu-na-koto-natsu-no-sora/">Mahoutsukai ni Taisetsu na Koto: Natsu no Sora</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Jueves, 03 de Julio de 2008 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/mahoutsukai-ni-taisetsu-na-koto/"><img alt="Mahoutsukai ni Taisetsu na Koto" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/mahoutsukai-ni-taisetsu-na-koto.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/mahoutsukai-ni-taisetsu-na-koto/">Mahoutsukai ni Taisetsu na Koto</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 10 de Enero de 2003 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/honoo-no-mirage-muyou-no-michi/"><img alt="Honoo no Mirage: Muyou no Michi" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/honoo-no-mirage-muyou-no-michi.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/honoo-no-mirage-muyou-no-michi/">Honoo no Mirage: Muyou no Michi</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Lunes, 04 de Febrero de 2002 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/honoo-no-mirage/"><img alt="Honoo no Mirage" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/honoo-no-mirage.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/honoo-no-mirage/">Honoo no Mirage</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Lunes, 07 de Enero de 2002 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/ansatsu-kyoushitsu-kagaijugyou-hen/"><img alt="Ansatsu Kyoushitsu: Kagaijugyou-hen" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/ansatsu-kyoushitsu-kagaijugyou-hen.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/ansatsu-kyoushitsu-kagaijugyou-hen/">Ansatsu Kyoushitsu: Kagaijugyou-hen</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 11 de Marzo de 2016 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/hoshi-wo-ou-kodomo/"><img alt="Hoshi wo Ou Kodomo" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/hoshi-wo-ou-kodomo.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/hoshi-wo-ou-kodomo/">Hoshi wo Ou Kodomo</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Sabado, 07 de Mayo de 2011 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/umayuru-full-gate/"><img alt="Umayuru: Full Gate!" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/umayuru-full-gate.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/umayuru-full-gate/">Umayuru: Full Gate!</a><span></span></h5><div class="card-info"><p class="badge currently">En emision</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Martes, 01 de Septiembre de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/kanojo-no-tomodachi/"><img alt="Kanojo no Tomodachi" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/kanojo-no-tomodachi.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/kanojo-no-tomodachi/">Kanojo no Tomodachi</a><span></span></h5><div class="card-info"><p class="badge currently">En emision</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Lunes, 05 de Octubre de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/aoki-denshou-welsh-shedar/"><img alt="Aoki Denshou Welsh &amp; Shedar" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/aoki-denshou-welsh-shedar.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/aoki-denshou-welsh-shedar/">Aoki Denshou Welsh &amp; Shedar</a><span></span></h5><div class="card-info"><p class="badge currently">En emision</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 02 de Octubre de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/kaijuu-8-gou-narumi-no-heijitsu/"><img alt="Kaijuu 8-gou: Narumi no Heijitsu" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/kaijuu-8-gou-narumi-no-heijitsu.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/kaijuu-8-gou-narumi-no-heijitsu/">Kaijuu 8-gou: Narumi no Heijitsu</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge ONA"> ONA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Sabado, 05 de Septiembre de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/kidou-senshi-gundam-senkou-no-hathaway-circe-no-majo/"><img alt="Kidou Senshi Gundam: Senkou no Hathaway - Circe no Majo" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/kidou-senshi-gundam-senkou-no-hathaway-circe-no-majo.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/kidou-senshi-gundam-senkou-no-hathaway-circe-no-majo/">Kidou Senshi Gundam: Senkou no Hathaway - Circe no Majo</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 30 de Enero de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/all-you-need-is-kill/"><img alt="All You Need Is Kill" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/all-you-need-is-kill.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/all-you-need-is-kill/">All You Need Is Kill</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 09 de Enero de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/oshiete-galko-chan-natsuyasumi-tte-hontou-desu-ka/"><img alt="Oshiete! Galko-chan: Natsuyasumi tte Hontou desu ka?" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/oshiete-galko-chan-natsuyasumi-tte-hontou-desu-ka.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/oshiete-galko-chan-natsuyasumi-tte-hontou-desu-ka/">Oshiete! Galko-chan: Natsuyasumi tte Hontou desu ka?</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge OVA"> OVA </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Lunes, 23 de Enero de 2017 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/ghost-hunt/"><img alt="Ghost Hunt" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/ghost-hunt.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/ghost-hunt/">Ghost Hunt</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Miercoles, 04 de Octubre de 2006 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/healin-good-precure/"><img alt="Healin' Good♡Precure" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/healin-good-precure.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/healin-good-precure/">Healin' Good♡Precure</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Domingo, 02 de Febrero de 2020 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/mahou-shoujo-site/"><img alt="Mahou Shoujo Site" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/mahou-shoujo-site.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/mahou-shoujo-site/">Mahou Shoujo Site</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge TV"> Serie </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Sabado, 07 de Abril de 2018 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/kujira-wo-yumemu/"><img alt="Kujira wo Yumemu" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/kujira-wo-yumemu.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/kujira-wo-yumemu/">Kujira wo Yumemu</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 01 de Mayo de 2026 </p></div></div>
+<div class="p-3 d-flex"><div class="custom_thumb_home"><a href="https://jkanime.net/marulk-chan-no-nichijou/"><img alt="Marulk-chan no Nichijou" class="img-fluid rounded-start" src="https://cdn.jkdesa.com/assets/images/animes/image/marulk-chan-no-nichijou.jpg"/></a></div><div class="card-body-home"><h5 class="card-title"><a href="https://jkanime.net/marulk-chan-no-nichijou/">Marulk-chan no Nichijou</a><span></span></h5><div class="card-info"><p class="badge finished">Concluido</p><p class="badge Movie"> Pelicula </p></div><p class="card-text ep"><i class="ti ti-clock-hour-4"></i> Viernes, 17 de Enero de 2020 </p></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 p-4 p-md-0 pr-lg-5 col-md-12 col-sm-12 mt-5">
+<div class="section-title">
+<h4><i class="ti ti-clock-play"></i> Top animes</h4>
+<a class="vt" href="https://jkanime.net/top">Ver todo</a>
+</div>
+<div class="row upto row-cols-md-2 row-cols-lg-4 row-cols-2">
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/one-piece/"><div class="card-img"><img alt="One Piece" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/one-piece.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 13096</div>
+<div class="card-body">
+<div class="ranking" data-rank="1"><span>#1</span></div>
+<h5 class="card-title">One Piece </h5>
+<div class="card-synopsis d-none">Una historia épica de piratas, donde narra la historia de "Monkey D. Luffy" quien cuando tenia 7 años, comió accidentalmente una "Akuma no mi"(Fruta del diablo) la cual le convirtió en un hombre de goma. Por otra parte "Gol D. Roger" conocido como "El rey de los Piratas" quien fuera ejecutado por la Marine, habló antes...</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/kimetsu-no-yaiba-hashira-geiko-hen/"><div class="card-img"><img alt="Kimetsu no Yaiba: Hashira Geiko-hen" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/kimetsu-no-yaiba-hashira-geiko-hen.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 9533</div>
+<div class="card-body">
+<div class="ranking" data-rank="2"><span>#2</span></div>
+<h5 class="card-title">Kimetsu no Yaiba: Hashira Geiko-hen </h5>
+<div class="card-synopsis d-none">Nueva temporada de Kimetsu no Yaiba.</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/kono-subarashii-sekai-ni-shukufuku-wo/"><div class="card-img"><img alt="Kono Subarashii Sekai ni Shukufuku wo!" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/kono-subarashii-sekai-ni-shukufuku-wo.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 8430</div>
+<div class="card-body">
+<div class="ranking" data-rank="3"><span>#3</span></div>
+<h5 class="card-title">Kono Subarashii Sekai ni Shukufuku wo! </h5>
+<div class="card-synopsis d-none">Esta comedia de mundos alternativos gira en torno a Kazuma Satou, un hikikomori fan a muerte de los videojuegos, el anime y el manga. Un accidente de tráfico pone fin a su vida… o eso debería haber pasado, pero se despierta con una preciosa chica al lado que se presenta diciendo que es una diosa. La chica le dice “Teng...</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/dragon-ball-z/"><div class="card-img"><img alt="Dragon Ball Z (Original)" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/dragon-ball-z.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 8201</div>
+<div class="card-body">
+<div class="ranking" data-rank="4"><span>#4</span></div>
+<h5 class="card-title">Dragon Ball Z (Original) </h5>
+<div class="card-synopsis d-none">En Dragon ball Z Goku se ha convertido en un adulto y está casado con Milk, con la que tiene un hijo llamado Gohan. En esta segunda saga de Dragon ball Goku descubrirá que no es un terricola, sino que pertenece a una raza de guerreros conocida por ser una de las más poderosas de la galaxia, para posteriormente dar paso...</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="row lower row-cols-md-3 row-cols-lg-6 row-cols-2">
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka/"><div class="card-img"><img alt="Danmachi" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 8043</div>
+<div class="card-body">
+<div class="ranking" data-rank="5"><span>#5</span></div>
+<h5 class="card-title">Danmachi </h5>
+<div class="card-synopsis d-none">La acción de Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka? tiene lugar en Orario, una laberíntica ciudad también conocida como “Mazmorra”. Vel Chanel es un aventurero inexperto al que le encantaría "tener un encuentro trascendental con una persona del sexo opuesto".
+
+Un día, Vel es atacado por un minotauro....</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/kimetsu-no-yaiba/"><div class="card-img"><img alt="Kimetsu no Yaiba" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/kimetsu-no-yaiba.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 8039</div>
+<div class="card-body">
+<div class="ranking" data-rank="6"><span>#6</span></div>
+<h5 class="card-title">Kimetsu no Yaiba </h5>
+<div class="card-synopsis d-none">Estamos en la era Taisho de Japón. Tanjiro, un joven que se gana la vida vendiendo carbón, descubre un día que su familia ha sido asesinada por un demonio. Para empeorar las cosas, su hermana menor Nezuko, la única superviviente de la masacre, ha sufrido una transformación en demonio. Destrozado por los acontecimientos...</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/sono-bisque-doll-wa-koi-wo-suru/"><div class="card-img"><img alt="Sono Bisque Doll wa Koi wo Suru" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/sono-bisque-doll-wa-koi-wo-suru.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 6708</div>
+<div class="card-body">
+<div class="ranking" data-rank="7"><span>#7</span></div>
+<h5 class="card-title">Sono Bisque Doll wa Koi wo Suru </h5>
+<div class="card-synopsis d-none">Wakana Gojou siempre ha tenido una afición por las muñecas tradicionales. Sin embargo, una experiencia negativa y traumática con un amigo en el pasado lo hizo transformarse en un chico solitario que pasa sus días en el salón de economía del hogar, cosiendo.
+
+Un día, la preciosa Marin Kitagawa, una joven que siempre va ...</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/kaoru-hana-wa-rin-to-saku/"><div class="card-img"><img alt="Kaoru Hana wa Rin to Saku" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/kaoru-hana-wa-rin-to-saku.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 6073</div>
+<div class="card-body">
+<div class="ranking" data-rank="8"><span>#8</span></div>
+<h5 class="card-title">Kaoru Hana wa Rin to Saku </h5>
+<div class="card-synopsis d-none">A pesar de estar uno al lado del otro, el instituto público Chidori y la academia privada Kikyo, sólo para chicas, parecen existir en dos mundos diferentes. Mientras que este último goza de una reputación inmaculada y favorece a las estudiantes de orígenes acomodados, el primero es un nido de delincuentes de pocas luce...</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow/"><div class="card-img"><img alt="Ore dake Level Up na Ken Season 2: Arise from the Shadow" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/ore-dake-level-up-na-ken-season-2-arise-from-the-shadow.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 5655</div>
+<div class="card-body">
+<div class="ranking" data-rank="9"><span>#9</span></div>
+<h5 class="card-title">Ore dake Level Up na Ken Season 2: Arise from the Shadow </h5>
+<div class="card-synopsis d-none">Segunda temporada de Ore dake Level Up na Ken.</div>
+</div>
+</a>
+</div>
+</div>
+<div class="col toplist mb-3">
+<div class="card">
+<a href="https://jkanime.net/kaijuu-8-gou/"><div class="card-img"><img alt="Kaijuu 8-gou" class="card-img-top" src="https://cdn.jkdesa.com/assets/images/animes/image/kaijuu-8-gou.jpg"/></div>
+<div class="card-badge"><i class="ti ti-thumb-up"></i> 5440</div>
+<div class="card-body">
+<div class="ranking" data-rank="10"><span>#10</span></div>
+<h5 class="card-title">Kaijuu 8-gou </h5>
+<div class="card-synopsis d-none">Unos monstruos grotescos parecidos a Godzilla llamados "kaijuu" llevan muchos años apareciendo por Japón. Para combatir a estas bestias, una unidad militar de élite conocida como Cuerpo de Defensa arriesga su vida a diario para proteger a los civiles. Una vez que se mata a una criatura, los "barrenderos" -que trabajan ...</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<style>
+div#anti_spoiler {
+    background: #303240 !important;
+    border-radius: 12px;
+}
+.autoimage .d-thumb img.spoiler {
+    aspect-ratio: 1 / 1.5;
+}
+</style>
+
+</div>
+<div class="searchbg" style="display: none;"><form action="https://jkanime.net/buscar" autocomplete="off" class="form_search2" data-ajax="https://jkanime.net/ajax_search" id="form_search_ajax" method="get" role="search">
+
+<button class="buton-form" id="btn_qsubmit" type="submit"><i class="search"></i></button>
+<div id="search_results" style="display: none;"><div class="lds-ellipsis" id="qloader"><div></div><div></div><div></div><div></div></div></div><div class="search_history mobhistory" style="display: none;"><h3>Buscado recientemente:</h3><ul class="history_list"></ul></div>
+</form>
+</div>
+<nav class="mobile-bottom-nav">
+<div class="mainmenu">
+<!-- MENÚ main GENERADO DINÁMICAMENTE - NO EDITAR MANUALMENTE -->
+<!-- Última actualización: 2026-02-06 17:39:41 -->
+<a class="mobile-bottom-nav__item mobile-bottom-nav__item--active" href="https://jkanime.net">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-home-bolt"></i> Inicio
+		</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/directorio">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-list-details"></i> Directorio
+		</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/horario">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-calendar-clock"></i> Horario
+		</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/comunidad">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-users"></i> Comunidad
+		</div>
+</a>
+<a class="mobile-bottom-nav__item movmenu floatsearch" href="#">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-search"></i> Buscar
+		</div>
+</a>
+<a class="fullmenu mobile-bottom-nav__item" href="#">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-dots"></i> Más</div>
+</a>
+</div>
+<div class="fullmenu_container d-bg" style="display: none;">
+<!-- MENÚ full GENERADO DINÁMICAMENTE - NO EDITAR MANUALMENTE -->
+<!-- Última actualización: 2026-09-02 12:41:29 -->
+<h3 class="t-dark">Más secciones</h3>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/aplicacion">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-device-mobile"></i> Aplicación Android
+		</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/pedidos">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-plus"></i> Pedir un anime
+		</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/historial">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-history"></i> Historial
+			</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/estrenos">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-calendar"></i> Estrenos
+			</div>
+</a>
+<a class="mobile-bottom-nav__item" href="https://jkanime.net/top">
+<div class="mobile-bottom-nav__item-content">
+<i class="ti ti-trophy"></i> Top
+		</div>
+</a>
+<h3 class="t-dark">Te recomendamos</h3>
+<a class="mobile-bottom-nav__item" href="https://hentaijk.com" target="_blank">
+<div class="mobile-bottom-nav__item-content">
+			HentaiJK
+		</div>
+</a>
+</div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="auth_modal d-none">
+<div class="auth-container">
+<div class="auth-wrapper login">
+<h2 class="mb-4">Iniciar Sesión</h2>
+<div class="alert alert-danger" role="alert" style="display: none;"></div>
+<form id="loginForm">
+<label class="form-label" for="registerUsername">Usuario</label>
+<div class="form-outline w-100">
+
+<i class="ti ti-user ms-3"></i>
+<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 0px;"></div><div class="form-notch-trailing"></div></div></div>
+<label class="form-label" for="registerEmail">Contraseña</label>
+<div class="form-outline w-100">
+
+<i class="ti ti-lock ms-3"></i>
+<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 0px;"></div><div class="form-notch-trailing"></div></div></div>
+<button class="mt-3 btn btn-primary w-100 mb-3" type="submit">Entrar</button>
+<p class="text-center">¿No tienes una cuenta? <a href="#" id="showRegister">Regístrate aquí</a></p>
+<p class="text-center"><a href="https://login.jkanime.net/password/reset" target="_blank">¿Olvidaste tu contraseña?</a></p>
+<hr/>
+<a class="btn w-100 d-inline-block gauth" href="https://login.jkanime.net/api/auth/google" style=""><i class="ti ti-brand-google-filled"></i> Entrar con Google</a>
+<a class="btn w-100 d-inline-block dauth" href="https://login.jkanime.net/api/auth/discord" style=""><i class="ti ti-brand-discord-filled"></i> Entrar con Discord</a>
+</form>
+</div>
+<div class="auth-wrapper register">
+<h2 class="mb-4">Registrarse</h2>
+<div class="alert alert-danger" role="alert" style="display: none;"></div>
+<form id="registerForm">
+<div class="d-flex justify-content-center flex-column w-xl-25 w-md-50">
+<label class="form-label" for="registerUsername">Usuario</label>
+<div class="form-outline w-100" data-mdb-input-init="" data-mdb-input-initialized="true">
+
+<i class="ti ti-user ms-3"></i>
+<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 0px;"></div><div class="form-notch-trailing"></div></div></div>
+<label class="form-label" for="registerEmail">Email</label>
+<div class="form-outline w-100" data-mdb-input-init="" data-mdb-input-initialized="true">
+
+<i class="ti ti-mail ms-3"></i>
+<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 0px;"></div><div class="form-notch-trailing"></div></div></div>
+<label class="form-label" for="registerPassword">Contraseña</label>
+<div class="form-outline w-100" data-mdb-input-init="" data-mdb-input-initialized="true">
+
+<i class="ti ti-lock ms-3"></i>
+<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 0px;"></div><div class="form-notch-trailing"></div></div></div>
+<label class="form-label" for="registerPasswordConfirm">Confirmar contraseña</label>
+<div class="form-outline w-100" data-mdb-input-init="" data-mdb-input-initialized="true">
+
+<i class="ti ti-lock-exclamation ms-3"></i>
+<div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 0px;"></div><div class="form-notch-trailing"></div></div></div>
+</div>
+<button class="btn btn-success w-100 mt-5 mb-3" type="submit">Registrarse</button>
+<p class="text-center">¿Ya tienes una cuenta? <a href="#" id="showLogin">Iniciar Sesión</a></p>
+</form>
+</div>
+</div>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+<ins class="604c7625" data-cp-domain="Jkanime.net" data-cp-host="3a30daa6132e4053a9e719ba96b7adc3|Jkanime.net" data-key="d7da2793-cc3a-4d10-a59e-1cb9b54c23c7"></ins>
+<ins class="604c7625" data-cp-domain="Jkanime.net" data-cp-host="3a30daa6132e4053a9e719ba96b7adc3|Jkanime.net" data-key="3e459bd0-12be-4023-813a-b58a5e7f86b8"></ins>
+
+<style>
+div#jk_thread > #adangle-pop-iframe-container {
+    height: unset !important;
+    display: unset !important;
+    width: unset !important;
+    position: unset !important;
+}
+</style>
+<!-- Privacy-friendly analytics by Plausible -->
+
+
+
+<footer class="footer">
+<div class="page-up">
+<a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-lg-9">
+<div class="footer__nav">
+<ul>
+<li class="active"><a href="https://jkanime.net">Inicio</a></li>
+<li><a href="https://jkanime.net/pedidos">Pedir un anime</a></li>
+</ul>
+</div>
+</div>
+<div class="col-lg-3">
+</div>
+</div>
+</div>
+</footer>
+</body></html>

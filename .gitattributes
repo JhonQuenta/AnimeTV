@@ -1,0 +1,9 @@
+* text=auto
+gradlew text eol=lf
+*.java text eol=lf
+*.gradle text eol=lf
+*.md text eol=lf
+*.png binary
+*.jpg binary
+*.webp binary
+*.jar binary

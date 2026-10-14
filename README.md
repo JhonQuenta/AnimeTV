@@ -17,7 +17,7 @@ AnimeAV1, Tioanime, Latanime, AnimeLatinoHD y JKAnime vienen incluidas en el APK
 
 ## Descargar e instalar
 
-Los APK se adjuntan a las Releases de GitHub cuando se publique el repositorio. Versión preparada: **0.30.0**, código 43.
+Descarga los APK desde [Releases](https://github.com/JhonQuenta/AnimeTV/releases). Versión: **0.30.0**, código 43.
 
 | Archivo | Dispositivo |
 |---|---|
@@ -66,3 +66,5 @@ Incluye versión de AnimeTV, dispositivo, versión de Android, fuente, anime, ep
 El código original de AnimeTV se distribuye bajo GPL-3.0-only; ver LICENSE y THIRD_PARTY_NOTICES.md. Los componentes externos conservan sus licencias. Acompañar los APK con AnimeTV-0.30.0-source.zip y AnimeTV-0.30.0-third-party-source.zip. Los logos identifican a sus respectivos proveedores; la licencia del código no concede derechos sobre marcas, imágenes ni vídeos de esos sitios. AnimeTV no aloja vídeos ni está afiliada a las fuentes.
 
 Las notas antiguas están en HISTORY.md; no describen necesariamente la versión actual.
+
+Consulta [PRIVACY.md](PRIVACY.md) para conocer los datos locales y las conexiones externas.

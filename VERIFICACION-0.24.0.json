@@ -1,0 +1,42 @@
+{
+  "version": "0.24.0",
+  "versionCode": 37,
+  "tests": {
+    "tests": 265,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 56
+  },
+  "apkGenerated": false,
+  "publishedApkUnchanged": true,
+  "remoteVerified": [
+    "five source choices, down/up to/from fixed footer",
+    "Back restores opener",
+    "filter repeated-press deduplication",
+    "navigation cancels pending filters"
+  ],
+  "loadingVerified": [
+    "original artwork bytes unchanged",
+    "HTTP cancellation on interrupt",
+    "shared artwork remains for remaining consumer",
+    "late failure cannot remove replacement request",
+    "new image URL cancels old image",
+    "preload uses saved episode"
+  ],
+  "preserved": [
+    "five providers and native filters/search results",
+    "catalogue/metadata cache and three-way parallelism",
+    "artwork decoding sizes and cache",
+    "playback formats, languages and headers"
+  ],
+  "limitations": [
+    "physical TV validation pending",
+    "provider bandwidth/codec/DNS failures not solved",
+    "Jikan live verification remains pending"
+  ],
+  "commands": "testDebugUnitTest lintRelease; no assemble"
+}

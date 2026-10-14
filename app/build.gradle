@@ -1,0 +1,87 @@
+plugins { id 'com.android.application' }
+def allAbis = providers.gradleProperty('allAbis').orElse('false').get().toBoolean()
+def signingFile = System.getenv('ANIMETV_KEYSTORE')
+android {
+    namespace 'pe.animetv'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'pe.animetv'; minSdk 23; targetSdk 35; versionCode 43; versionName '0.30.0'
+        ndk { abiFilters.addAll(allAbis ? ['armeabi-v7a', 'arm64-v8a'] : ['armeabi-v7a']) }
+    }
+    signingConfigs {
+        distribution {
+            if (signingFile) {
+                storeFile file(signingFile)
+                storePassword System.getenv('ANIMETV_STORE_PASSWORD')
+                keyAlias System.getenv('ANIMETV_KEY_ALIAS')
+                keyPassword System.getenv('ANIMETV_KEY_PASSWORD')
+            }
+        }
+    }
+    splits {
+        abi {
+            enable allAbis
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a'
+            universalApk allAbis
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            if (signingFile) signingConfig signingConfigs.distribution
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions { coreLibraryDesugaringEnabled true; sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    testOptions { unitTests.returnDefaultValues = true; unitTests.includeAndroidResources = true }
+}
+
+tasks.configureEach {
+    if (name == 'packageRelease') {
+        doFirst {
+            if (!signingFile || !System.getenv('ANIMETV_STORE_PASSWORD') || !System.getenv('ANIMETV_KEY_ALIAS') || !System.getenv('ANIMETV_KEY_PASSWORD')) {
+                throw new GradleException('Release requiere ANIMETV_KEYSTORE, ANIMETV_STORE_PASSWORD, ANIMETV_KEY_ALIAS y ANIMETV_KEY_PASSWORD. No publiques claves en el repositorio.')
+            }
+        }
+    }
+}
+dependencies {
+    implementation project(':source-core')
+    implementation project(':extractors')
+    implementation project(':sources:animeav1')
+    implementation project(':sources:tioanime')
+    implementation project(':sources:latanime')
+    implementation project(':sources:animelatinohd')
+    implementation project(':sources:jkanime')
+
+    implementation 'androidx.leanback:leanback:1.2.0'
+    implementation 'androidx.annotation:annotation-experimental:1.4.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+    implementation 'androidx.media3:media3-exoplayer:1.11.1'
+    implementation 'androidx.media3:media3-exoplayer-hls:1.11.1'
+    implementation 'androidx.media3:media3-ui:1.11.1'
+    implementation 'androidx.media3:media3-datasource-okhttp:1.11.1'
+    implementation 'io.github.anilbeesetti:nextlib-media3ext:1.11.1-0.16.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'org.jsoup:jsoup:1.18.3'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
+    testImplementation 'org.robolectric:robolectric:4.14.1'
+}
+
+tasks.withType(Test).configureEach {
+    def testHome = layout.buildDirectory.dir('test-home').get().asFile
+    systemProperty 'user.home', testHome.absolutePath
+    systemProperty 'java.io.tmpdir', new File(testHome, 'tmp').absolutePath
+    systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'
+    doFirst { testHome.mkdirs(); new File(testHome, 'tmp').mkdirs() }
+}
+
+
+
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+tasks.withType(Test).configureEach { systemProperty 'animetv.previewDir', rootProject.file('../redesign-verification').absolutePath }

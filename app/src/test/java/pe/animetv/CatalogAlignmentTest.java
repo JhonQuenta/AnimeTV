@@ -1,0 +1,10 @@
+package pe.animetv;
+import android.os.Looper;import android.view.*;import android.widget.*;import java.lang.reflect.*;import org.junit.*;import org.junit.runner.RunWith;import org.robolectric.*;import org.robolectric.annotation.Config;import static org.junit.Assert.*;
+@RunWith(RobolectricTestRunner.class) @Config(sdk=28,qualifiers="w960dp-h540dp-land-xhdpi")
+public class CatalogAlignmentTest {
+    private Object field(MainActivity a,String key)throws Exception{Field f=MainActivity.class.getDeclaredField(key);f.setAccessible(true);return f.get(a);}
+    private void settle(MainActivity a){for(int n=0;n<4;n++){Shadows.shadowOf(Looper.getMainLooper()).idleFor(java.time.Duration.ofMillis(100));View v=a.getWindow().getDecorView();v.measure(View.MeasureSpec.makeMeasureSpec(1920,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(1080,View.MeasureSpec.EXACTLY));v.layout(0,0,1920,1080);}}
+    @Test public void lastSearchIconHasSameRightEdgeAsSourceInBothMenuWidths()throws Exception{
+        var controller=Robolectric.buildActivity(TvScreenTest.FakeActivity.class).setup().visible().windowFocusChanged(true);MainActivity a=controller.get();try{Method load=MainActivity.class.getDeclaredMethod("loadCatalog",int.class);load.setAccessible(true);load.invoke(a,1);settle(a);LinearLayout finder=(LinearLayout)field(a,"finder"),header=(LinearLayout)field(a,"header");for(boolean expanded:new boolean[]{true,false}){Method menu=MainActivity.class.getDeclaredMethod("menuExpanded",boolean.class);menu.setAccessible(true);menu.invoke(a,expanded);settle(a);View icon=finder.getChildAt(3),source=((TvRowsView)field(a,"catalogView")).model.items.get(0).findViewWithTag("source-picker");int[] first=new int[2],second=new int[2];icon.getLocationInWindow(first);source.getLocationInWindow(second);assertEquals(second[0]+source.getWidth(),first[0]+icon.getWidth());assertEquals(TvUi.dp(a,8),finder.getWidth()-icon.getRight());assertEquals(finder.getChildAt(0).getHeight(),icon.getHeight());}}finally{controller.pause().stop().destroy();}
+    }
+}

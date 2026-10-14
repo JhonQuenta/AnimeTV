@@ -1,0 +1,6 @@
+package pe.animetv;
+import org.junit.*;import java.util.*;import java.util.concurrent.*;import java.util.concurrent.atomic.*;import static org.junit.Assert.*;
+public class SourceWorkTest {
+ @Test public void metadataFanOutIsParallelBoundedAndOrdered()throws Exception{AtomicInteger active=new AtomicInteger(),peak=new AtomicInteger();CountDownLatch allThree=new CountDownLatch(3);var results=SourceWork.map(List.of(1,2,3,4,5),n->{int running=active.incrementAndGet();peak.accumulateAndGet(running,Math::max);allThree.countDown();assertTrue(allThree.await(3,TimeUnit.SECONDS));try{return n*10;}finally{active.decrementAndGet();}});assertEquals(3,peak.get());assertEquals(List.of(10,20,30,40,50),results.stream().map(SourceWork.Result::value).toList());}
+ @Test public void nestedLookupsDoNotDeadlockAndFailuresStayIsolated()throws Exception{var results=SourceWork.map(List.of(1,2,3),n->{var nested=SourceWork.map(List.of(n),x->{if(x==2)throw new java.io.IOException("bad item");return x;});if(nested.get(0).failure()!=null)throw nested.get(0).failure();return nested.get(0).value();});assertEquals(1,(int)results.get(0).value());assertNotNull(results.get(1).failure());assertEquals(3,(int)results.get(2).value());}
+}

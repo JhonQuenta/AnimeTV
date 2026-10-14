@@ -1,0 +1,11 @@
+<resources>
+    <style name="AnimeTvTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:colorAccent">#2688FF</item>
+        <item name="android:windowBackground">#0C0F14</item>
+        <item name="android:colorBackground">#181D26</item>
+        <item name="android:colorControlHighlight">#402688FF</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>
+
