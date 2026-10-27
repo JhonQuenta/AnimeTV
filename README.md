@@ -10,20 +10,20 @@ AnimeAV1, Tioanime, Latanime, AnimeLatinoHD y JKAnime vienen incluidas en el APK
 
 - Catálogo, búsqueda, filtros, calendario y favoritos.
 - Selección de idioma y servidores disponibles por episodio.
-- Seguir viendo con progreso guardado, eliminación manteniendo OK y limpieza desde Ajustes.
-- Lista o miniaturas de episodios, bloques para series largas y orden ascendente/descendente.
-- Reproductor con calidad disponible, velocidad y saltos configurables mediante el mando.
+- Seguir viendo con progreso guardado, eliminación manteniendo OK y limpieza desde Ajustes. Inicio y Favoritos se actualizan al volver de la ficha o reproducción.
+- Lista o miniaturas de episodios, bloques para series largas y orden ascendente/descendente. Mantener OK permite marcar/desmarcar como visto o marcar todos los anteriores; el seleccionado queda sin modificar. Check al extremo derecho en lista e imágenes atenuadas en episodios vistos.
+- Reproductor con calidad disponible, velocidad y saltos configurables mediante el mando. Arriba muestra los botones, otra pulsación enfoca la barra y la siguiente oculta los controles. Se ocultan tras cinco segundos de inactividad sin detener el vídeo; el capítulo aparece separado arriba a la izquierda.
 - Fondos cuando la fuente proporciona imágenes adecuadas y logos de los proveedores.
 
 ## Descargar e instalar
 
-Descarga los APK desde [Releases](https://github.com/JhonQuenta/AnimeTV/releases). Versión: **0.30.0**, código 43.
+Descarga los APK desde [Releases](https://github.com/JhonQuenta/AnimeTV/releases). Versión: **0.31.0**, código 44.
 
 | Archivo | Dispositivo |
 |---|---|
-| AnimeTV-0.30.0-armeabi-v7a.apk | Android TV ARM de 32 bits; incluye la Xiaomi TV 4S usada durante el desarrollo |
-| AnimeTV-0.30.0-arm64-v8a.apk | Android TV con sistema ARM de 64 bits |
-| AnimeTV-0.30.0-universal.apk | Android TV ARM32 o ARM64; contiene ambas arquitecturas |
+| [AnimeTV-0.31.0-armeabi-v7a.apk](https://github.com/JhonQuenta/AnimeTV/releases/download/v0.31.0/AnimeTV-0.31.0-armeabi-v7a.apk) | Android TV ARM de 32 bits, incluida Xiaomi TV 4S |
+| [AnimeTV-0.31.0-arm64-v8a.apk](https://github.com/JhonQuenta/AnimeTV/releases/download/v0.31.0/AnimeTV-0.31.0-arm64-v8a.apk) | Android TV con sistema ARM de 64 bits |
+| [AnimeTV-0.31.0-universal.apk](https://github.com/JhonQuenta/AnimeTV/releases/download/v0.31.0/AnimeTV-0.31.0-universal.apk) | Android TV ARM32 o ARM64 |
 
 Universal significa ARM32 + ARM64: no incluye x86. La arquitectura corresponde al sistema Android, no solo al procesador. SDK mínimo 23 (Android 6). La interfaz requiere Android TV/Leanback; no es una edición para teléfonos. Instalar encima de una versión con el mismo identificador y certificado conserva los datos.
 
@@ -47,7 +47,7 @@ En Windows usa gradlew.bat. Los resultados están en app/build/outputs/apk/. Par
 
 ## Arquitectura y comprobaciones
 
-Cinco bibliotecas de fuente, extractores compartidos y contratos en source-core. Interfaz, reproductor e historial permanecen en app. Ver ARCHITECTURE.md. La última comprobación aprobó 279 pruebas y lint no encontró errores. Las pruebas usan Robolectric; no sustituyen una prueba física con mando y reproducción en la TV.
+Cinco bibliotecas de fuente, extractores compartidos y contratos en source-core. Interfaz, reproductor e historial permanecen en app. Ver ARCHITECTURE.md. La última comprobación aprobó 301 pruebas y lint no encontró errores. Las pruebas usan Robolectric; no sustituyen una prueba física con mando y reproducción en la TV.
 
 ## Limitaciones conocidas
 
@@ -63,6 +63,6 @@ Incluye versión de AnimeTV, dispositivo, versión de Android, fuente, anime, ep
 
 ## Licencia
 
-El código original de AnimeTV se distribuye bajo GPL-3.0-only; ver LICENSE y THIRD_PARTY_NOTICES.md. Los componentes externos conservan sus licencias. Acompañar los APK con AnimeTV-0.30.0-source.zip y AnimeTV-0.30.0-third-party-source.zip. Los logos identifican a sus respectivos proveedores; la licencia del código no concede derechos sobre marcas, imágenes ni vídeos de esos sitios. AnimeTV no aloja vídeos ni está afiliada a las fuentes.
+El código original de AnimeTV se distribuye bajo GPL-3.0-only; ver LICENSE y THIRD_PARTY_NOTICES.md. Los componentes externos conservan sus licencias. Acompañar los APK con AnimeTV-0.31.0-source.zip y AnimeTV-0.31.0-third-party-source.zip. Los logos identifican a sus respectivos proveedores; la licencia del código no concede derechos sobre marcas, imágenes ni vídeos de esos sitios. AnimeTV no aloja vídeos ni está afiliada a las fuentes.
 
 Consulta [PRIVACY.md](PRIVACY.md) para conocer los datos locales y las conexiones externas.

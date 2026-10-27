@@ -15,7 +15,7 @@ public class PlayerControlTest {
   ExoPlayer fake=(ExoPlayer)Proxy.newProxyInstance(ExoPlayer.class.getClassLoader(),new Class<?>[]{ExoPlayer.class},(proxy,method,args)->{switch(method.getName()){case "getCurrentTimeline":return timeline;case "isCommandAvailable":return true;case "getCurrentPosition":return position;case "getDuration":return 1500000L;case "getPlaybackState":return Player.STATE_READY;case "getPlayWhenReady":return playing;case "getCurrentTracks":return Tracks.EMPTY;case "seekTo":if(args.length==1)position=(long)args[0];return null;case "play":playing=true;return null;case "pause":playing=false;return null;default:if(method.getReturnType()==boolean.class)return false;if(method.getReturnType()==int.class)return 0;if(method.getReturnType()==long.class)return 0L;return null;}});set("player",fake);set("firstFrame",false);set("controlsVisible",false);
  }
  @Test public void hiddenTimelineKeepsCurrentTime()throws Exception{position=750000;((Runnable)get("ticker")).run();assertEquals(500,((SeekBar)get("seek")).getProgress());assertTrue(((TextView)get("clock")).getText().toString().startsWith("12:30"));assertEquals(false,get("controlsVisible"));}
- @Test public void headingChangesEpisodeAndToolsHaveAGap()throws Exception{assertEquals("Prueba · 2",((TextView)get("episodeHeading")).getText());Method change=PlayerActivity.class.getDeclaredMethod("changeEpisode",int.class);change.setAccessible(true);change.invoke(activity,2);assertEquals("Prueba · 3",((TextView)get("episodeHeading")).getText());View episodesButton=((LinearLayout)get("actions")).findViewWithTag("Episodios");assertEquals(TvUi.dp(activity,10),((LinearLayout.LayoutParams)episodesButton.getLayoutParams()).leftMargin);}
+ @Test public void headingChangesEpisodeAndToolsHaveAGap()throws Exception{assertEquals("Prueba",((TextView)get("episodeHeading")).getText());assertEquals("Capítulo 2",((TextView)get("episodeNumber")).getText());Method change=PlayerActivity.class.getDeclaredMethod("changeEpisode",int.class);change.setAccessible(true);change.invoke(activity,2);assertEquals("Prueba",((TextView)get("episodeHeading")).getText());assertEquals("Capítulo 3",((TextView)get("episodeNumber")).getText());View episodesButton=((LinearLayout)get("actions")).findViewWithTag("Episodios");assertEquals(TvUi.dp(activity,10),((LinearLayout.LayoutParams)episodesButton.getLayoutParams()).leftMargin);}
  @Test public void failedStartupDoesNotEraseResumePosition()throws Exception{Store store=(Store)get("store");store.position("https://example.org/2",300000);position=0;Method m=PlayerActivity.class.getDeclaredMethod("rememberPosition");m.setAccessible(true);m.invoke(activity);assertEquals(300000,store.position("https://example.org/2"));}
  @Test public void watchedAt95PercentPersistsDuringReplay()throws Exception{Store store=(Store)get("store");store.progress("watched",950,1000);assertTrue(store.watched("watched"));assertEquals(950,store.progress("watched"));store.progress("watched",10,1000);assertTrue(store.watched("watched"));}
  @Test public void backgroundKeepsPausedServerAndPosition()throws Exception{set("firstFrame",true);Server server=new Server("Byse","https://example.org/embed","SUB");set("activeServer",server);position=300000;controller.pause();assertEquals(server,get("returningServer"));assertEquals(true,get("returningPaused"));assertEquals(300000,((Store)get("store")).position("https://example.org/2"));}
@@ -41,4 +41,44 @@ public class PlayerControlTest {
  private List<View> descendants(ViewGroup group){List<View> out=new ArrayList<>();for(int n=0;n<group.getChildCount();n++){View child=group.getChildAt(n);out.add(child);if(child instanceof ViewGroup)out.addAll(descendants((ViewGroup)child));}return out;}
  @Test public void simplifiedControlsHaveThreeTransportIconsAndEpisodePicker()throws Exception{Method m=PlayerActivity.class.getDeclaredMethod("rebuildActions");m.setAccessible(true);m.invoke(activity);LinearLayout actions=(LinearLayout)get("actions");int icons=0;boolean found=false,episodes=false;for(View v:descendants(actions)){if(!(v instanceof LinearLayout))continue;LinearLayout control=(LinearLayout)v;String label=String.valueOf(control.getContentDescription());if(control.getChildAt(0) instanceof TvUi.Icon)icons++;if(label.startsWith("Adelantar")){control.performClick();found=true;}if(label.equals("Episodios"))episodes=true;assertFalse(label.contains("opening"));assertFalse(label.contains("ending"));}assertEquals(5,icons);assertTrue(episodes);assertTrue(found);assertEquals(15000,position);assertEquals(TvUi.dp(activity,60),((View)get("playButton")).getLayoutParams().height);}
  @Test public void remoteShowsAccumulatedSeekMessage()throws Exception{for(int n=0;n<3;n++)activity.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_RIGHT));assertEquals(25000,position);assertEquals("+15 s",((TextView)get("status")).getText());for(int n=0;n<3;n++)activity.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_LEFT));assertEquals(10000,position);assertEquals("-15 s",((TextView)get("status")).getText());}
+
+ private void controlsReady()throws Exception{
+  set("generation",((Integer)get("generation"))+1);controller.visible().windowFocusChanged(true);
+  Shadows.shadowOf(android.os.Looper.getMainLooper()).idle();
+  View root=(View)get("root");root.measure(View.MeasureSpec.makeMeasureSpec(1920,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(1080,View.MeasureSpec.EXACTLY));root.layout(0,0,1920,1080);
+ }
+ private void up(){activity.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_UP));activity.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_DPAD_UP));}
+ @Test public void upShowsButtonsThenTimelineThenHidesWithoutPausing()throws Exception{
+  controlsReady();playing=true;up();assertEquals(true,get("controlsVisible"));assertTrue(((View)get("playButton")).hasFocus());
+  up();assertTrue(((View)get("seek")).hasFocus());up();assertEquals(false,get("controlsVisible"));assertTrue(playing);
+ }
+ @Test public void controlsDisappearAfterFiveSecondsWithoutChangingPlayback()throws Exception{
+  controlsReady();playing=true;up();Shadows.shadowOf(android.os.Looper.getMainLooper()).idleFor(java.time.Duration.ofMillis(4900));assertEquals(true,get("controlsVisible"));
+  Shadows.shadowOf(android.os.Looper.getMainLooper()).idleFor(java.time.Duration.ofMillis(150));assertEquals(false,get("controlsVisible"));assertTrue(playing);assertEquals(10000,position);
+ }
+ @Test public void eachKeyResetsControlsTimerAndHeldUpDoesNotSkipStages()throws Exception{
+  controlsReady();up();activity.dispatchKeyEvent(new KeyEvent(0,0,KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_UP,4));assertTrue(((View)get("playButton")).hasFocus());
+  Shadows.shadowOf(android.os.Looper.getMainLooper()).idleFor(java.time.Duration.ofSeconds(4));up();assertTrue(((View)get("seek")).hasFocus());
+  Shadows.shadowOf(android.os.Looper.getMainLooper()).idleFor(java.time.Duration.ofSeconds(4));assertEquals(true,get("controlsVisible"));
+  activity.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_DOWN));assertTrue(((View)get("playButton")).hasFocus());
+  Shadows.shadowOf(android.os.Looper.getMainLooper()).idleFor(java.time.Duration.ofSeconds(5));assertEquals(false,get("controlsVisible"));
+ }
+ @Test public void chapterLabelIsSeparateAtTopLeftAndHidesWithControls()throws Exception{
+  controlsReady();up();TextView number=(TextView)get("episodeNumber");FrameLayout.LayoutParams layout=(FrameLayout.LayoutParams)number.getLayoutParams();
+  assertEquals(Gravity.TOP|Gravity.LEFT,layout.gravity);assertSame(get("root"),number.getParent());assertEquals(View.VISIBLE,number.getVisibility());
+  activity.getIntent().putExtra("title","Un título extremadamente largo que no debe incluir el número del capítulo");Method update=PlayerActivity.class.getDeclaredMethod("updateEpisodeHeading");update.setAccessible(true);update.invoke(activity);
+  assertEquals(activity.getIntent().getStringExtra("title"),((TextView)get("episodeHeading")).getText());assertEquals("Capítulo 2",number.getText());
+  up();up();assertEquals(View.GONE,number.getVisibility());
+ }
+
+ @Test public void longAbsenceInvalidatesCachedServerBeforeResumingSavedMinute()throws Exception{
+  java.util.concurrent.atomic.AtomicInteger invalidated=new java.util.concurrent.atomic.AtomicInteger();java.util.concurrent.atomic.AtomicReference<String> episode=new java.util.concurrent.atomic.AtomicReference<>();
+  Source fake=(Source)Proxy.newProxyInstance(Source.class.getClassLoader(),new Class<?>[]{Source.class},(proxy,method,args)->{
+   switch(method.getName()){case "invalidate":invalidated.incrementAndGet();episode.set((String)args[1]);return null;case "resolve":throw new java.io.IOException("test offline");case "id":return "fake";default:return null;}
+  });
+  set("source",fake);set("foreground",false);set("returningServer",new Server("Byse","https://example.org/embed","SUB"));set("activeStream",new Stream("https://example.org/expired.m3u8","https://example.org"));set("resolvedAt",-120000L);set("requestedPosition",1140000L);
+  activity.onResume();assertEquals(1,invalidated.get());assertEquals("https://example.org/2",episode.get());assertEquals(1140000L,get("requestedPosition"));assertNull(get("activeStream"));
+ }
+
+ @Test public void backgroundCancelsPendingExtraction()throws Exception{java.util.concurrent.FutureTask<Void> pending=new java.util.concurrent.FutureTask<>(()->null);set("extractionTask",pending);controller.pause();assertTrue(pending.isCancelled());assertNull(get("extractionTask"));}
 }

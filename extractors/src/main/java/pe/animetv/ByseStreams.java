@@ -43,6 +43,7 @@ final class ByseStreams {
         throw new IOException("Byse: ningún video nativo accesible",last);
     }
     private static JSONObject request(String url,JSONObject body,Headers headers)throws Exception{
+        if(Thread.currentThread().isInterrupted())throw new java.io.InterruptedIOException("Byse: conexión cancelada");
         Request.Builder r=new Request.Builder().url(url).headers(headers);if(body!=null)r.post(RequestBody.create(body.toString(),MediaType.get("application/json")));
         try(Response response=SourceNetwork.HTTP.newCall(r.build()).execute()){if(!response.isSuccessful()||response.body()==null)throw new IOException("Byse: HTTP "+response.code());return new JSONObject(response.body().string());}
     }
@@ -55,13 +56,33 @@ final class ByseStreams {
         Cipher cipher=Cipher.getInstance("AES/GCM/NoPadding");cipher.init(Cipher.DECRYPT_MODE,new SecretKeySpec(key,"AES"),new GCMParameterSpec(128,Base64.getUrlDecoder().decode(data.getString("iv"))));return new String(cipher.doFinal(Base64.getUrlDecoder().decode(data.getString("payload"))),StandardCharsets.UTF_8);
     }
     static String solve(String nonce,int difficulty)throws IOException{
-        if(difficulty<0||difficulty>20)throw new IOException("Byse: verificación demasiado costosa para TV");long deadline=System.nanoTime()+8_000_000_000L;int[] buffer=new int[512];
-        for(int counter=0;counter<=200000;counter++){if((counter&63)==0&&(Thread.currentThread().isInterrupted()||System.nanoTime()>deadline))throw new IOException("Byse: tiempo de verificación agotado");if(Integer.numberOfLeadingZeros(hash(nonce+":"+counter,buffer))>=difficulty)return Integer.toString(counter);}
-        throw new IOException("Byse: verificación no completada");
+        return solve(nonce,difficulty,System::nanoTime);
+    }
+    static String solve(String nonce,int difficulty,java.util.function.LongSupplier clock)throws IOException{
+        if(difficulty<0||difficulty>20)throw new IOException("Byse: verificación demasiado costosa para TV");
+        long started=clock.getAsLong();int[] buffer=new int[512],state=new int[4],prefix=initialState();byte[] digits=new byte[10];
+        for(byte b:(nonce+":").getBytes(StandardCharsets.ISO_8859_1))feed(prefix,b&255);
+        // 200,000 attempts rejected valid challenges depending on the random nonce.
+        // Match the protocol's search range, with a wall-clock cap and cancellation for TV.
+        for(int counter=0;counter<=2_000_000;counter++){
+            if((counter&63)==0&&(Thread.currentThread().isInterrupted()||clock.getAsLong()-started>=20_000_000_000L))throw new IOException("Byse: tiempo de verificación agotado (dificultad "+difficulty+")");
+            if(Integer.numberOfLeadingZeros(candidateHash(counter,prefix,state,buffer,digits))>=difficulty)return Integer.toString(counter);
+        }
+        throw new IOException("Byse: verificación no completada (dificultad "+difficulty+")");
+    }
+    private static int[] initialState(){return new int[]{1779033703,(int)3144134277L,1013904242,(int)2773480762L};}
+    private static void feed(int[] s,int value){s[0]+=value;s[0]=Integer.rotateLeft(s[0],7);round(s);}
+    static int candidateHash(int counter,int[] prefix,int[] state,int[] buffer,byte[] digits){
+        System.arraycopy(prefix,0,state,0,4);int start=digits.length,value=counter;
+        do{digits[--start]=(byte)('0'+value%10);value/=10;}while(value>0);
+        for(int n=start;n<digits.length;n++)feed(state,digits[n]);
+        return finishHash(state,buffer);
     }
     static int hash(String value,int[] buffer){
-        int[] s={1779033703,(int)3144134277L,1013904242,(int)2773480762L};
-        for(byte b:value.getBytes(StandardCharsets.ISO_8859_1)){s[0]+=b&255;s[0]=Integer.rotateLeft(s[0],7);s[0]+=s[1];s[3]=Integer.rotateLeft(s[3]^s[0],16);s[2]+=s[3];s[1]=Integer.rotateLeft(s[1]^s[2],12);s[0]+=s[1];s[3]=Integer.rotateLeft(s[3]^s[0],8);s[2]+=s[3];s[1]=Integer.rotateLeft(s[1]^s[2],7);}
+        int[] s=initialState();for(byte b:value.getBytes(StandardCharsets.ISO_8859_1))feed(s,b&255);
+        return finishHash(s,buffer);
+    }
+    private static int finishHash(int[] s,int[] buffer){
         for(int n=0;n<8;n++)round(s);for(int n=0;n<512;n++){round(s);buffer[n]=s[0]^s[2];}
         for(int pass=0;pass<2;pass++)for(int n=0;n<512;n++){int c=Integer.rotateLeft(buffer[n]+buffer[buffer[n]&511],13)^(buffer[(n+1)&511]*(int)2654435761L);buffer[n]=c;s[0]^=c;round(s);}
         round(s);int out=s[0];for(int n=0;n<64;n++)out=Integer.rotateLeft(out+buffer[n],5)^(buffer[n]*(int)2246822519L);return out^s[2];

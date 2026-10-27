@@ -19,7 +19,24 @@ public class MainActivity extends Activity {
     private final Map<String,List<TextView[]>> pendingTags=new HashMap<>();
     private final Map<String,List<ImageView>> pendingImages=new HashMap<>();private final Map<String,Future<?>> artworkTasks=new HashMap<>();private final Map<ImageView,String> artworkKeys=new IdentityHashMap<>(); private final Set<String> typeRequests=new HashSet<>(); private android.speech.SpeechRecognizer speech; private boolean voicePending,voiceActive;
     private final List<Runnable> progressRefresh=new ArrayList<>();
-    @Override protected void onResume(){super.onResume();for(Runnable refresh:progressRefresh)refresh.run();}
+    @Override protected void onResume(){super.onResume();refreshProgress();refreshLibrarySections();}
+    private void refreshProgress(){for(Runnable refresh:List.copyOf(progressRefresh))refresh.run();}
+    private void refreshLibrarySections(){
+        if(store==null||detailView!=null)return;
+        boolean homeChanged=section.equals("Inicio")&&!homeHistory.equals(store.history().toString()),favoritesChanged=section.equals("Favoritos")&&!favoriteState.equals(store.favorites().toString());
+        if(!homeChanged&&!favoritesChanged)return;
+        View focused=root.findFocus();Object tag=focused==null?null:focused.getTag();boolean restore=!header.hasFocus();
+        if(homeChanged)home();else showFavorites();
+        if(restore&&catalogView instanceof TvRowsView){TvRowsView rows=(TvRowsView)catalogView;main.post(()->{if(detailView!=null||catalogView!=rows)return;View target=libraryCard(rows,tag);if(target==null)target=libraryCard(rows,null);if(target!=null)rows.restoreFocus(target);else focusMenu();});}
+    }
+    private View libraryCard(View view,Object tag){
+        if((view instanceof TvUi.PosterCard||view instanceof TvUi.EpisodeCard)&&(tag==null||tag.equals(view.getTag())))return view;
+        if(view instanceof TvRowsView){for(View child:((TvRowsView)view).model.items){View found=libraryCard(child,tag);if(found!=null)return found;}}
+        else if(view instanceof TvRowsView.Rail){for(View child:((TvRowsView.Rail)view).model.items){View found=libraryCard(child,tag);if(found!=null)return found;}}
+        else if(view instanceof ViewGroup){ViewGroup group=(ViewGroup)view;for(int n=0;n<group.getChildCount();n++){View found=libraryCard(group.getChildAt(n),tag);if(found!=null)return found;}}
+        return null;
+    }
+    private void observeProgress(View view,Runnable refresh){refresh.run();view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(){public void onViewDetachedFromWindow(View v){progressRefresh.remove(refresh);}public void onViewAttachedToWindow(View v){if(!progressRefresh.contains(refresh))progressRefresh.add(refresh);refresh.run();}});}
     private Recommendations recommendationLoader;
     private final ExecutorService suggestions=Executors.newSingleThreadExecutor();
     private Future<?> suggestionsTask,foregroundTask,filtersTask,warmTask;
@@ -32,7 +49,7 @@ public class MainActivity extends Activity {
     private final TimedCache<List<Anime>> catalogCache=new TimedCache<>(6,300000);
     private record SectionSnapshot(View view,View banner,int page,long time,String history){}
     private final LinkedHashMap<String,SectionSnapshot> sections=new LinkedHashMap<>(4,.75f,true);
-    private boolean sectionReady;private String homeHistory="";private long sectionBorn;
+    private boolean sectionReady;private String homeHistory="",favoriteState="";private long sectionBorn;
     private void navigate(String name,Runnable loader){
         if(name.equals(section)&&detailView==null&&sectionReady&&android.os.SystemClock.elapsedRealtime()-sectionBorn<300000)return;
         if(detailView==null&&sectionReady&&List.of("Inicio","Catálogo","Calendario").contains(section)){
@@ -96,7 +113,7 @@ public class MainActivity extends Activity {
             String last=store.lastEpisode(anime.url()),artwork=store.backdrop(anime.url());
             FrameLayout card=(FrameLayout)landscape(anime.title(),"",artwork.isBlank()?anime.image():artwork,()->{returnFocus=root.findFocus();showDetail(anime);});
             final int historyIndex=n;card.setTag("continue:"+anime.url());LongOk.bind(card,held->removeContinueMenu(anime,historyIndex,held));
-            TextView label=(TextView)card.getChildAt(2);label.setMaxLines(2);long duration=store.duration(last),position=store.position(last);label.setText(anime.title()+(duration>0?"\n"+Math.max(0,(duration-position)/60000)+" min restantes":""));
+            TextView label=(TextView)card.getChildAt(2);label.setMaxLines(2);observeProgress(card,()->{String current=store.lastEpisode(anime.url());long duration=store.duration(current),position=store.position(current);label.setText(anime.title()+(duration>0?"\n"+Math.max(0,(duration-position)/60000)+" min restantes":""));});
             LinearLayout origin=SourceBrand.badge(this,Sources.forUrl(anime.url(),source),10);FrameLayout.LayoutParams badge=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.LEFT);badge.setMargins(dp(9),dp(9),dp(9),0);card.addView(origin,badge);
             addProgress(card,()->store.lastEpisode(anime.url()));LinearLayout.LayoutParams size=new LinearLayout.LayoutParams(dp(245),-2);size.rightMargin=dp(16);line.addView(card,size);
         }
@@ -237,12 +254,17 @@ public class MainActivity extends Activity {
         TvUi.Icon play=new TvUi.Icon(this,"play");play.setPadding(dp(8),dp(8),dp(8),dp(8));android.graphics.drawable.GradientDrawable playCircle=TvUi.background(this,0xCC101318,0);playCircle.setShape(android.graphics.drawable.GradientDrawable.OVAL);play.setBackground(playCircle);play.setVisibility(View.GONE);card.addView(play,new FrameLayout.LayoutParams(dp(40),dp(40),Gravity.CENTER));
         card.setOnFocusChangeListener((v,focused)->{v.setBackground(TvUi.background(this,focused?0xFF29384C:TvUi.PANEL,focused?TvUi.ACCENT:0));play.setVisibility(focused?View.VISIBLE:View.GONE);});card.setContentDescription(title+(subtitle.isBlank()?"":", "+subtitle));card.setOnClickListener(v->action.run());return card;
     }
-    private void addProgress(FrameLayout card,String episode) {addProgress(card,()->episode);}
+    private void addProgress(FrameLayout card,String episode) {addProgress(card,()->episode,true);}
     private void addProgress(FrameLayout card,java.util.function.Supplier<String> episodeUrl) {
+        addProgress(card,episodeUrl,false);
+    }
+    private void addProgress(FrameLayout card,java.util.function.Supplier<String> episodeUrl,boolean fadeWatched) {
         String episode=episodeUrl.get();
         ProgressBar bar=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);bar.setMax(1000);bar.setProgress(store.progress(episode));bar.setProgressTintList(android.content.res.ColorStateList.valueOf(TvUi.ACCENT));card.addView(bar,new FrameLayout.LayoutParams(-1,dp(4),Gravity.BOTTOM));
         TextView check=text("✓",18);check.setPadding(dp(8),dp(4),dp(8),dp(4));check.setBackground(TvUi.background(this,0xCC101318,0));check.setVisibility(store.watched(episode)?View.VISIBLE:View.GONE);card.addView(check,new FrameLayout.LayoutParams(-2,-2,Gravity.BOTTOM|Gravity.RIGHT));
-        Runnable refresh=()->{String current=episodeUrl.get();bar.setProgress(store.progress(current));bar.setVisibility(store.duration(current)>0?View.VISIBLE:View.GONE);check.setVisibility(store.watched(current)?View.VISIBLE:View.GONE);};refresh.run();card.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(){public void onViewDetachedFromWindow(View v){progressRefresh.remove(refresh);}public void onViewAttachedToWindow(View v){if(!progressRefresh.contains(refresh))progressRefresh.add(refresh);refresh.run();}});
+        ImageView artwork=fadeWatched&&card.getChildAt(0) instanceof ImageView?(ImageView)card.getChildAt(0):null;
+        android.graphics.ColorMatrix grayscale=new android.graphics.ColorMatrix();grayscale.setSaturation(0.15f);android.graphics.ColorMatrixColorFilter watchedFilter=new android.graphics.ColorMatrixColorFilter(grayscale);
+        observeProgress(card,()->{String current=episodeUrl.get();boolean watched=store.watched(current);bar.setProgress(watched?1000:store.progress(current));bar.setVisibility(watched||store.duration(current)>0?View.VISIBLE:View.GONE);check.setVisibility(watched?View.VISIBLE:View.GONE);if(artwork!=null){artwork.setColorFilter(watched?watchedFilter:null);artwork.setAlpha(watched?0.65f:1f);}});
     }
     private void showRecommendations(LinearLayout panel,List<Anime> items){
         if(items.equals(panel.getTag()))return;
@@ -253,8 +275,8 @@ public class MainActivity extends Activity {
     }
     private LinearLayout compactEpisode(Episode episode,Runnable action){
         TvUi.ProgressRow item=new TvUi.ProgressRow(this);item.setContentDescription(episode.name());item.setGravity(Gravity.CENTER_VERTICAL);item.setPadding(dp(12),dp(6),dp(12),dp(6));item.setMinimumHeight(dp(44));TvUi.focus(item);item.setOnClickListener(v->action.run());
-        TextView caption=text(episode.name(),14);item.addView(caption);
-        Runnable refresh=()->{boolean watched=store.watched(episode.url());caption.setText((watched?"✓ ":"")+episode.name());item.setProgress(watched?1000:store.progress(episode.url()));};refresh.run();item.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(){public void onViewDetachedFromWindow(View v){progressRefresh.remove(refresh);}public void onViewAttachedToWindow(View v){if(!progressRefresh.contains(refresh))progressRefresh.add(refresh);refresh.run();}});return item;
+        TextView caption=text(episode.name(),14);caption.setSingleLine(true);caption.setEllipsize(android.text.TextUtils.TruncateAt.END);item.addView(caption,new LinearLayout.LayoutParams(0,-2,1));TextView check=text("✓",18);check.setTag("episode-watched-check");check.setPadding(dp(12),0,0,0);item.addView(check,new LinearLayout.LayoutParams(-2,-2));
+        observeProgress(item,()->{boolean watched=store.watched(episode.url());check.setVisibility(watched?View.VISIBLE:View.GONE);item.setContentDescription(episode.name()+(watched?", visto":""));item.setProgress(watched?1000:store.progress(episode.url()));});return item;
     }
     private void addCard(LinearLayout line,View card) { LinearLayout.LayoutParams size=new LinearLayout.LayoutParams(0,-2,1); size.setMargins(dp(6),dp(8),dp(6),dp(8)); line.addView(card,size); }
     private void pad(LinearLayout line,int count,int columns) { if(line!=null && count%columns!=0)for(int n=count%columns;n<columns;n++)line.addView(new View(this),new LinearLayout.LayoutParams(0,1,1)); }
@@ -315,13 +337,21 @@ public class MainActivity extends Activity {
         void updateToolbar(){order.removeAllViews();order.addView(new TvUi.Icon(MainActivity.this,descending?"descending":"ascending"),new LinearLayout.LayoutParams(dp(22),dp(22)));order.setContentDescription(descending?"Orden descendente; cambiar a ascendente":"Orden ascendente; cambiar a descendente");mode.removeAllViews();mode.addView(new TvUi.Icon(MainActivity.this,compact?"thumbnail":"list"),new LinearLayout.LayoutParams(dp(22),dp(22)));mode.setContentDescription(compact?"Mostrar miniaturas":"Mostrar lista compacta");}
         void renderRanges(){if(ranges==null)return;ranges.model.removeAllViews();int count=EpisodeWindow.groups(detail.episodes().size());for(int n=0;n<count;n++){final int selected=descending?count-1-n:n;View button=button(EpisodeWindow.label(detail.episodes().size(),selected),null,()->{group=group==selected?-1:selected;markRange();renderEpisodes();});button.setTag(selected);button.setContentDescription("Bloque de capítulos "+EpisodeWindow.label(detail.episodes().size(),selected));button.setMinimumHeight(dp(36));button.setPadding(dp(12),dp(6),dp(12),dp(6));ranges.model.addView(button,new LinearLayout.LayoutParams(dp(92),dp(36)));}markRange();}
         void markRange(){if(ranges==null)return;for(View v:ranges.model.items){boolean selected=Objects.equals(v.getTag(),group);v.setSelected(selected);TextView caption=(TextView)((LinearLayout)v).getChildAt(0);caption.setText(EpisodeWindow.label(detail.episodes().size(),(Integer)v.getTag()));caption.setTextColor(selected?TvUi.TEXT:TvUi.MUTED);TvUi.refreshFocus(v);v.setContentDescription((selected?"Contraer bloque ":"Expandir bloque ")+EpisodeWindow.label(detail.episodes().size(),(Integer)v.getTag()));}}
-        void compactNavigation(View item){item.setOnKeyListener((v,key,event)->{if(event.getAction()!=KeyEvent.ACTION_DOWN||(key!=KeyEvent.KEYCODE_DPAD_DOWN&&key!=KeyEvent.KEYCODE_DPAD_UP))return false;int target=episodeRows.indexOf(item)+(key==KeyEvent.KEYCODE_DPAD_DOWN?1:-1);if(target<0||target>=episodeRows.size())return false;View next=episodeRows.get(target);if(panel instanceof TvRowsView.RowModel&&((TvRowsView.RowModel)panel).grid.getParent() instanceof TvRowsView)((TvRowsView)((TvRowsView.RowModel)panel).grid.getParent()).restoreFocus(next);else next.requestFocus();return true;});}
+        View.OnKeyListener compactNavigation(View item){return (v,key,event)->{if(event.getAction()!=KeyEvent.ACTION_DOWN||(key!=KeyEvent.KEYCODE_DPAD_DOWN&&key!=KeyEvent.KEYCODE_DPAD_UP))return false;int target=episodeRows.indexOf(item)+(key==KeyEvent.KEYCODE_DPAD_DOWN?1:-1);if(target<0||target>=episodeRows.size())return false;View next=episodeRows.get(target);if(panel instanceof TvRowsView.RowModel&&((TvRowsView.RowModel)panel).grid.getParent() instanceof TvRowsView)((TvRowsView)((TvRowsView.RowModel)panel).grid.getParent()).restoreFocus(next);else next.requestFocus();return true;};}
         void renderEpisodes(){
             for(View old:episodeRows)panel.removeView(old);episodeRows.clear();
             int insert=panel instanceof TvRowsView.RowModel?((TvRowsView.RowModel)panel).items.indexOf(anchor)+1:panel.indexOfChild(anchor)+1;
             if(group<0)return;List<Integer> indices=EpisodeWindow.indices(detail.episodes().size(),group,descending);LinearLayout line=null;
-            for(int n=0;n<indices.size();n++){final int index=indices.get(n);Episode episode=detail.episodes().get(index);if(compact){LinearLayout item=compactEpisode(episode,()->play(detail,index));item.setTag("episode-row");episodeRows.add(item);compactNavigation(item);LinearLayout.LayoutParams compactSize=new LinearLayout.LayoutParams(-1,dp(44));compactSize.bottomMargin=dp(8);panel.addView(item,insert++,compactSize);continue;}if(n%4==0){line=row();line.setTag("episode-row");episodeRows.add(line);panel.addView(line,insert++,new LinearLayout.LayoutParams(-1,-2));}long position=store.position(episode.url());FrameLayout episodeCard=(FrameLayout)landscape(episode.name(),position>0?"Continuar · "+position/60000+" min":"",episode.image().isBlank()?detail.anime().image():episode.image(),()->play(detail,index));addProgress(episodeCard,episode.url());addCard(line,episodeCard);}pad(line,indices.size(),4);
+            for(int n=0;n<indices.size();n++){final int index=indices.get(n);Episode episode=detail.episodes().get(index);if(compact){LinearLayout item=compactEpisode(episode,()->play(detail,index));item.setTag("episode-row");episodeRows.add(item);LongOk.bind(item,held->episodeMenu(detail,index,item,held),compactNavigation(item));LinearLayout.LayoutParams compactSize=new LinearLayout.LayoutParams(-1,dp(44));compactSize.bottomMargin=dp(8);panel.addView(item,insert++,compactSize);continue;}if(n%4==0){line=row();line.setTag("episode-row");episodeRows.add(line);panel.addView(line,insert++,new LinearLayout.LayoutParams(-1,-2));}long position=store.position(episode.url());FrameLayout episodeCard=(FrameLayout)landscape(episode.name(),position>0?"Continuar · "+position/60000+" min":"",episode.image().isBlank()?detail.anime().image():episode.image(),()->play(detail,index));addProgress(episodeCard,episode.url());LongOk.bind(episodeCard,held->episodeMenu(detail,index,episodeCard,held));addCard(line,episodeCard);}pad(line,indices.size(),4);
         }
+    }
+    private void episodeMenu(Detail detail,int index,View origin,boolean held){
+        Episode episode=detail.episodes().get(index);boolean watched=store.watched(episode.url());
+        LinearLayout body=column();Dialog menu=dialog(episode.name(),body);
+        View toggle=button(watched?"Desmarcar como visto":"Marcar como visto",null,()->{store.watched(episode.url(),!watched);refreshProgress();menu.dismiss();});toggle.setTag("episode-toggle-watched");body.addView(toggle);
+        if(index>0){View previous=button("Marcar anteriores como vistos",null,()->{store.markPreviousEpisodes(detail.episodes(),index);refreshProgress();menu.dismiss();});previous.setTag("episode-mark-previous");body.addView(previous);body.addView(text("Hasta "+detail.episodes().get(index-1).name()+". El capítulo seleccionado no se modifica.",13));}
+        View cancel=button("Cancelar",null,menu::dismiss);cancel.setTag("episode-menu-cancel");body.addView(cancel);
+        menu.setOnDismissListener(d->{if(detailView instanceof TvRowsView)((TvRowsView)detailView).restoreFocus(origin);else origin.requestFocus();});LongOk.consumeHeldRelease(menu,held);
     }
     private void confirmRecentEpisode(Detail detail,int index){
         new AlertDialog.Builder(this).setTitle("Último capítulo publicado").setMessage(detail.anime().title()+"\n¿Quieres ver "+detail.episodes().get(index).name()+"?")
@@ -333,7 +363,7 @@ public class MainActivity extends Activity {
     private void chooseCategory(Anime anime,LinearLayout heart) { List<String> names=store.categories(); if(names.size()==1) { store.favorite(anime,"Por defecto",true); refreshHeart(heart,anime); return; } new AlertDialog.Builder(this).setTitle("Guardar en categoría").setItems(names.toArray(new String[0]),(d,n)-> { store.favorite(anime,names.get(n),true); refreshHeart(heart,anime); }).show(); }
     private void play(Detail detail,int index) { String episode=detail.episodes().get(index).url();if(store.position(episode)>0){new AlertDialog.Builder(this).setTitle("Continuar episodio").setMessage("Guardado en "+store.position(episode)/60000+" min").setPositiveButton("Reanudar",(d,w)->launchEpisode(detail,index)).setNegativeButton("Empezar de cero",(d,w)->{store.position(episode,0);launchEpisode(detail,index);}).setNeutralButton("Cancelar",null).show();}else launchEpisode(detail,index); }
     private void launchEpisode(Detail detail,int index) { store.lastEpisode(detail.anime().url(),detail.episodes().get(index).url());store.rememberAnime(detail.anime()); ArrayList<String> urls=new ArrayList<>(),names=new ArrayList<>(); for(Episode e:detail.episodes()) { urls.add(e.url()); names.add(e.name()); } startActivity(new Intent(this,PlayerActivity.class).putExtra("source",Sources.forUrl(detail.anime().url(),source).id()).putExtra("animeUrl",detail.anime().url()).putExtra("title",detail.anime().title()).putStringArrayListExtra("episodes",urls).putStringArrayListExtra("names",names).putExtra("index",index)); }
-    private void returnCatalog() { cancelForeground();cancelSuggestions();++requestGeneration; detailView=null; header.setVisibility(View.VISIBLE); finder.setVisibility(section.equals("Catálogo")?View.VISIBLE:View.GONE); content.removeAllViews(); if(catalogView!=null) { if(catalogView.getParent()!=null)((ViewGroup)catalogView.getParent()).removeView(catalogView); content.addView(catalogView,new LinearLayout.LayoutParams(-1,0,1)); if(returnFocus!=null&&catalogView instanceof TvRowsView)((TvRowsView)catalogView).restoreFocus(returnFocus);resumeCatalogPagination(); } else home(); }
+    private void returnCatalog() { cancelForeground();cancelSuggestions();++requestGeneration; detailView=null; header.setVisibility(View.VISIBLE); finder.setVisibility(section.equals("Catálogo")?View.VISIBLE:View.GONE); content.removeAllViews(); if(catalogView!=null) { if(catalogView.getParent()!=null)((ViewGroup)catalogView.getParent()).removeView(catalogView); content.addView(catalogView,new LinearLayout.LayoutParams(-1,0,1)); if(returnFocus!=null&&catalogView instanceof TvRowsView)((TvRowsView)catalogView).restoreFocus(returnFocus);resumeCatalogPagination();refreshLibrarySections(); } else home(); }
     @Override public boolean dispatchKeyEvent(KeyEvent event){
         if(event.getAction()==KeyEvent.ACTION_DOWN&&detailView==null&&section.equals("Catálogo")&&catalogView instanceof TvRowsView){
             TvRowsView rows=(TvRowsView)catalogView;View focused=root.findFocus(),first=findPoster(rows);
@@ -351,6 +381,7 @@ public class MainActivity extends Activity {
     private void focusMenu(){for(int n=1;n<header.getChildCount();n++)if(section.equals(header.getChildAt(n).getTag())){header.getChildAt(n).requestFocus();return;}}
     @Override public void onBackPressed() { if(detailView!=null)returnCatalog(); else if(section.equals("Catálogo")&&page>1)loadCatalog(page-1);else if(!header.hasFocus()){for(int n=1;n<header.getChildCount();n++)if(section.equals(header.getChildAt(n).getTag())){header.getChildAt(n).requestFocus();return;}}else super.onBackPressed(); }
     private void showFavorites(){
+        favoriteState=store.favorites().toString();
         LinearLayout body=begin("Favoritos");title(body,"Favoritos","Tu colección");LinearLayout categories=shelf(body);
         List<String> names=new ArrayList<>();names.add("Todos");names.addAll(store.categories());for(String category:names){View tab=button(category,null,()->{favoriteCategory=category;showFavorites();});tab.setSelected(category.equals(favoriteCategory));TvUi.refreshFocus(tab);addAction(categories,tab);}
         addAction(categories,button("Nueva categoría","heart",()->categoryInput(null)));addAction(categories,button("Gestionar","settings",this::manageCategories));

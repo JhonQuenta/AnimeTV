@@ -146,7 +146,7 @@ public class RedesignTest {
 
         Store store=new Store(activity);store.progress("test/progress",5000,20000);TvUi.ProgressRow row=(TvUi.ProgressRow)call("compactEpisode",new Class<?>[]{Episode.class,Runnable.class},new Episode("Episodio 40","test/progress"),(Runnable)()->{});
 
-        assertEquals(250,row.getProgress());assertEquals(1,row.getChildCount());layout(row,800,88);Bitmap bitmap=Bitmap.createBitmap(800,88,Bitmap.Config.ARGB_8888);row.draw(new Canvas(bitmap));assertEquals(0xFF174F86,bitmap.getPixel(100,8));assertEquals(TvUi.PANEL,bitmap.getPixel(400,8));bitmap.recycle();snapshot("episodio-progreso",row);
+        assertEquals(250,row.getProgress());assertEquals(2,row.getChildCount());assertEquals(View.GONE,row.findViewWithTag("episode-watched-check").getVisibility());layout(row,800,88);Bitmap bitmap=Bitmap.createBitmap(800,88,Bitmap.Config.ARGB_8888);row.draw(new Canvas(bitmap));assertEquals(0xFF174F86,bitmap.getPixel(100,8));assertEquals(TvUi.PANEL,bitmap.getPixel(400,8));bitmap.recycle();snapshot("episodio-progreso",row);
 
         TvRowsView view=new TvRowsView(activity);call("renderDetail",new Class<?>[]{LinearLayout.class,Detail.class,int.class},view.model,new Detail(new Anime("Prueba","test",""),"",List.of(new Episode("Episodio 1","test/1"))),(Integer)field("requestGeneration"));View toolbar=view.model.items.get(1);assertTrue(toolbar.getPaddingBottom()>=TvUi.dp(activity,12));
 

@@ -6,11 +6,14 @@ import java.util.function.Consumer;
 /** One menu per held OK; releasing after the menu opens must never trigger a click. */
 final class LongOk implements View.OnKeyListener,View.OnAttachStateChangeListener {
     private final View view;
+    private final View.OnKeyListener navigation;
     private boolean held,triggered;
     private final Runnable timeout;
-    static void bind(View view,Consumer<Boolean> openMenu){new LongOk(view,openMenu);}
-    private LongOk(View view,Consumer<Boolean> openMenu){
+    static void bind(View view,Consumer<Boolean> openMenu){bind(view,openMenu,null);}
+    static void bind(View view,Consumer<Boolean> openMenu,View.OnKeyListener navigation){new LongOk(view,openMenu,navigation);}
+    private LongOk(View view,Consumer<Boolean> openMenu,View.OnKeyListener navigation){
         this.view=view;
+        this.navigation=navigation;
         timeout=()->{if(held&&view.hasFocus()&&view.isAttachedToWindow()){triggered=true;view.performLongClick();}};
         view.setOnLongClickListener(v->{openMenu.accept(held);return true;});
         view.setOnKeyListener(this);view.addOnAttachStateChangeListener(this);
@@ -19,7 +22,7 @@ final class LongOk implements View.OnKeyListener,View.OnAttachStateChangeListene
     }
     private static boolean ok(int key){return key==KeyEvent.KEYCODE_DPAD_CENTER||key==KeyEvent.KEYCODE_ENTER||key==KeyEvent.KEYCODE_NUMPAD_ENTER;}
     public boolean onKey(View v,int key,KeyEvent event){
-        if(!ok(key))return false;
+        if(!ok(key))return navigation!=null&&navigation.onKey(v,key,event);
         if(event.getAction()==KeyEvent.ACTION_DOWN){
             if(event.getRepeatCount()==0){view.removeCallbacks(timeout);held=true;triggered=false;view.setPressed(true);view.postDelayed(timeout,ViewConfiguration.getLongPressTimeout());}
             return true;

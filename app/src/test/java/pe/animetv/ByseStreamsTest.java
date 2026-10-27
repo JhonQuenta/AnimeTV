@@ -12,6 +12,9 @@ import static org.junit.Assert.*;
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk=28,manifest=Config.NONE)
 public class ByseStreamsTest {
+    @Test public void hashingMatchesProtocolVectors(){assertEquals(-1080919055,ByseStreams.hash("nonce:0",new int[512]));assertEquals(962447092,ByseStreams.hash("nonce:1",new int[512]));assertEquals(-347153604,ByseStreams.hash("reopen:200001",new int[512]));assertEquals(1320818306,ByseStreams.hash("nonce:999999",new int[512]));}
+    @Test public void validChallengeBeyondOldLimitStillResolves()throws Exception{assertEquals("842097",ByseStreams.solve("reopen-regression-0",18,()->0));}
+    @Test public void deadlineStillStopsWorkOnSlowDevices()throws Exception{java.util.concurrent.atomic.AtomicInteger calls=new java.util.concurrent.atomic.AtomicInteger();try{ByseStreams.solve("slow",20,()->calls.getAndIncrement()==0?0:21_000_000_000L);fail("Deadline must remain bounded");}catch(java.io.IOException expected){assertTrue(expected.getMessage().contains("tiempo"));}}
     @Test public void decryptsAuthenticatedPlaybackWithVersionedKeyParts()throws Exception{
         byte[] key=new byte[32],iv=new byte[12];Arrays.fill(key,(byte)7);Arrays.fill(iv,(byte)9);
         Cipher cipher=Cipher.getInstance("AES/GCM/NoPadding");cipher.init(Cipher.ENCRYPT_MODE,new SecretKeySpec(key,"AES"),new GCMParameterSpec(128,iv));String plain="{\"sources\":[{\"url\":\"https://cdn.example/master.m3u8\"}]}";

@@ -39,6 +39,15 @@ public final class Store {
     public void position(String url, long value) { p.edit().putLong("position:" + url, Math.max(0, value)).apply(); }
     public long duration(String url) { return p.getLong("duration:"+url,0); }
     public boolean watched(String url) { return p.getBoolean("watched:"+url,false); }
+    public void watched(String url,boolean value) {
+        p.edit().putBoolean("watched:"+url,value).apply();
+    }
+    public void markPreviousEpisodes(List<Models.Episode> episodes,int exclusiveEnd) {
+        if(exclusiveEnd<0||exclusiveEnd>episodes.size())throw new IllegalArgumentException("Episodio fuera de rango");
+        SharedPreferences.Editor edit=p.edit();
+        for(int n=0;n<exclusiveEnd;n++)edit.putBoolean("watched:"+episodes.get(n).url(),true);
+        edit.apply();
+    }
     public int progress(String url) { long d=duration(url);return d>0?(int)Math.min(1000,position(url)*1000/d):0; }
     public void progress(String url,long position,long duration) { if(duration<=0)return; p.edit().putLong("position:"+url,Math.max(0,position)).putLong("duration:"+url,duration).putBoolean("watched:"+url,watched(url)||position>=duration*0.95).apply(); }
     public String lastEpisode(String anime) { return p.getString("last-episode:"+anime,""); }

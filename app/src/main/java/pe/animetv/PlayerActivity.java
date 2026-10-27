@@ -20,6 +20,8 @@ import static pe.animetv.Models.*;
 public class PlayerActivity extends Activity {
     private final Handler main=new Handler(Looper.getMainLooper());
     private final ExecutorService io=Executors.newFixedThreadPool(3);
+    private Future<?> extractionTask;
+    private void cancelExtraction(){if(extractionTask!=null){extractionTask.cancel(true);extractionTask=null;}}
     private Source source;
     protected Source createSource() { return Sources.forUrl(getIntent().getStringExtra("animeUrl"),Sources.create(getIntent().getStringExtra("source"))); }
     private final List<Server> attempted=new ArrayList<>();
@@ -28,7 +30,8 @@ public class PlayerActivity extends Activity {
     private ExoPlayer player;
     private PlayerView surface;
     private LinearLayout controls,actions;
-    private TextView status,clock,totalClock,episodeHeading;
+    private TextView status,clock,totalClock,episodeHeading,episodeNumber;
+    private final Runnable hideControls=()->showControls(false);
     private String episodeLanguage="";
     private SeekBar seek;
     private FrameLayout root;
@@ -75,6 +78,7 @@ public class PlayerActivity extends Activity {
         store.diagnostic("Inicio Android="+Build.VERSION.SDK_INT+" salida="+(store.textureSurface()?"TextureView":"SurfaceView"));
         status=new TextView(this); status.setTextColor(Color.WHITE); status.setTextSize(19); status.setPadding(24,16,24,16); status.setBackgroundColor(0xB0101524); status.setMaxLines(3); FrameLayout.LayoutParams notice=new FrameLayout.LayoutParams(-1,-2,Gravity.TOP|Gravity.CENTER_HORIZONTAL); notice.topMargin=dp(27); notice.leftMargin=dp(48); notice.rightMargin=dp(48); root.addView(status,notice);
         controls=new LinearLayout(this); controls.setOrientation(LinearLayout.VERTICAL); controls.setPadding(dp(32),dp(8),dp(32),dp(12)); controls.setBackground(new android.graphics.drawable.GradientDrawable(android.graphics.drawable.GradientDrawable.Orientation.TOP_BOTTOM,new int[]{0x00000000,0xE6000000})); FrameLayout.LayoutParams panel=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM); root.addView(controls,panel);
+        episodeNumber=TvUi.text(this,"",18,TvUi.TEXT);episodeNumber.setSingleLine(true);episodeNumber.setEllipsize(android.text.TextUtils.TruncateAt.END);episodeNumber.setPadding(dp(10),dp(6),dp(10),dp(6));episodeNumber.setBackground(TvUi.background(this,0x99000000,0));FrameLayout.LayoutParams numberPosition=new FrameLayout.LayoutParams(-2,-2,Gravity.TOP|Gravity.LEFT);numberPosition.setMargins(dp(32),dp(18),dp(32),0);root.addView(episodeNumber,numberPosition);
         episodeHeading=TvUi.text(this,"",20,TvUi.TEXT);episodeHeading.setSingleLine(true);episodeHeading.setEllipsize(android.text.TextUtils.TruncateAt.END);controls.addView(episodeHeading);updateEpisodeHeading();
         LinearLayout times=new LinearLayout(this);times.setGravity(Gravity.CENTER_VERTICAL);clock=TvUi.text(this,"0:00",12,TvUi.MUTED);totalClock=TvUi.text(this,"--:--",12,TvUi.MUTED);totalClock.setGravity(Gravity.RIGHT);times.addView(clock,new LinearLayout.LayoutParams(0,-2,1));times.addView(totalClock,new LinearLayout.LayoutParams(-2,-2));controls.addView(times);
         seek=new SeekBar(this); seek.setMax(1000);seek.setProgressTintList(android.content.res.ColorStateList.valueOf(TvUi.ACCENT));seek.setThumbTintList(android.content.res.ColorStateList.valueOf(TvUi.ACCENT)); controls.addView(seek);
@@ -86,13 +90,17 @@ public class PlayerActivity extends Activity {
         actions=new LinearLayout(this); actions.setGravity(Gravity.CENTER); controls.addView(actions,new LinearLayout.LayoutParams(-1,-2)); actionHint=TvUi.text(this,"",13,TvUi.MUTED); actionHint.setGravity(Gravity.CENTER); actionHint.setVisibility(View.GONE);controls.addView(actionHint); showControls(false);
         requestedPosition=store.position(episodes.get(index)); rebuildActions(); loadEpisode(); main.post(ticker);
     }
-    private void updateEpisodeHeading(){if(episodeHeading!=null)episodeHeading.setText(getIntent().getStringExtra("title")+" · "+names.get(index));}
+    private void updateEpisodeHeading(){
+        if(episodeHeading!=null)episodeHeading.setText(getIntent().getStringExtra("title"));
+        if(episodeNumber!=null){String name=names.get(index);episodeNumber.setText(name.matches("\\d+(?:\\.\\d+)?")?"Capítulo "+name:name);}
+    }
     private void loadEpisode() {
+        cancelExtraction();
         updateEpisodeHeading();
         int token=++generation; startedAt=SystemClock.elapsedRealtime(); suggested=false; lastFailure=""; attempted.clear();retriedServers.clear(); activeServer=null; activeStream=null; servers=List.of(); firstFrame=false;
         releasePlayer(); notice("Buscando servidores…");
         Episode episode=new Episode(names.get(index),episodes.get(index));
-        io.execute(()-> { try { List<Server> result=source.servers(episode);
+        extractionTask=io.submit(()-> { try { List<Server> result=source.servers(episode);
             main.post(()-> { if(token!=generation || !foreground) return; servers=result.stream().filter(s->!blockedVideo(s,episode.url())).toList();
                 if(servers.isEmpty()) { error("La fuente no devolvió servidores."); return; }
                 if(returningServer!=null){Server previous=returningServer;returningServer=null;Server match=servers.stream().filter(s->s.name().equals(previous.name())&&s.language().equals(previous.language())).findFirst().orElse(null);if(match!=null){selectServer(match);return;}}
@@ -102,14 +110,15 @@ public class PlayerActivity extends Activity {
         } catch(Exception e) { main.post(()-> { if(token==generation) error("No se pudieron obtener servidores: "+e.getMessage()); }); } });
     }
     private void nextCandidate() {
+        cancelExtraction();
         releasePlayer();
         List<Server> remaining=new ArrayList<>(); for(Server s:servers) if(!attempted.contains(s)) remaining.add(s);
         String language=episodeLanguage.isBlank()?store.language():episodeLanguage; if(!episodeLanguage.isBlank())remaining.removeIf(s->!s.language().equals(language));else if(servers.stream().anyMatch(s->PlaybackLanguages.matches(s.language(),language)))remaining.removeIf(s->!PlaybackLanguages.matches(s.language(),language));
         remaining.sort(Comparator.comparingInt(s->PlaybackPolicy.serverRank(s.name())));
         if(remaining.isEmpty()) { error("No se pudo reproducir con las alternativas de "+PlaybackLanguages.label(store.language()).toLowerCase(Locale.ROOT)+"."+(lastFailure.isBlank()?"":"\n"+lastFailure)); return; }
         int token=++generation; String episodeUrl=episodes.get(index); notice(attempted.isEmpty()?"Preparando video…":"Probando otro servidor…");
-        Server candidate=remaining.get(0);attempted.add(candidate);
-        io.execute(()-> {try {Stream stream=source.resolve(candidate,episodeUrl);main.post(()-> {if(token==generation&&foreground)startStream(candidate,stream);});}catch(Exception e){main.post(()-> {if(token!=generation||!foreground)return;lastFailure=candidate.name()+": "+readable(e);store.diagnostic(lastFailure);nextCandidate();});}});
+        Server candidate=remaining.get(0);attempted.add(candidate);activeServer=candidate;activeStream=null;
+        extractionTask=io.submit(()-> {try {Stream stream=source.resolve(candidate,episodeUrl);main.post(()-> {if(token==generation&&foreground)startStream(candidate,stream);});}catch(Exception e){main.post(()-> {if(token!=generation||!foreground)return;lastFailure=candidate.name()+": "+readable(e);store.diagnostic(lastFailure);nextCandidate();});}});
     }
     private List<String> episodeLanguages(){return List.of("SUB","LAT","CAST","DUB").stream().filter(language->servers.stream().anyMatch(s->s.language().equals(language))).toList();}
     private void chooseLanguage(Runnable next){
@@ -126,8 +135,9 @@ public class PlayerActivity extends Activity {
         if(episodeLanguages().size()>1)box.addView(TvUi.button(this,"Cambiar idioma","audio",()->{dialog.dismiss();chooseServer();}));dialog.setOnCancelListener(d->{if(episodeLanguages().size()>1)chooseServer();else showControls(true);});box.addView(TvUi.button(this,"Cerrar","close",()->{dialog.dismiss();if(player==null)notice("Selecciona un servidor para reproducir.");showControls(true);}));dialog.setContentView(box);dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.show();dialog.getWindow().setLayout(Math.min(dp(460),getResources().getDisplayMetrics().widthPixels-dp(96)),Math.min(dp(350),getResources().getDisplayMetrics().heightPixels-dp(40)));
     }
     private void selectServer(Server selected) {
-        rememberPosition();releasePlayer(); int token=++generation;String url=episodes.get(index);notice("Preparando "+selected.name()+"…");
-        io.execute(()-> { try { Stream stream=source.resolve(selected,url);main.post(()-> {if(token==generation&&foreground)startStream(selected,stream);}); }catch(Exception e){main.post(()-> {if(token==generation){store.diagnostic("Extracción "+selected.name()+": "+e.getClass().getSimpleName()+" · "+readable(e));error(selected.name()+": "+readable(e));}});} });
+        cancelExtraction();
+        rememberPosition();releasePlayer();activeServer=selected;activeStream=null;int token=++generation;String url=episodes.get(index);notice("Preparando "+selected.name()+"…");
+        extractionTask=io.submit(()-> { try { Stream stream=source.resolve(selected,url);main.post(()-> {if(token==generation&&foreground)startStream(selected,stream);}); }catch(Exception e){main.post(()-> {if(token==generation&&foreground){store.diagnostic("Extracción "+selected.name()+": "+e.getClass().getSimpleName()+" · "+readable(e));error(selected.name()+": "+readable(e));}});} });
     }
     static String serverCaption(Server server){return server.name()+switch(server.name().toLowerCase(Locale.ROOT)){case "voe","yourupload"->" - 720p";case "byse","mp4upload","hls"->" - 1080p";default->"";};}
     static String serverCaption(Server server,String source){return (source.equals("latanime")||source.equals("jkanime"))?server.name():serverCaption(server);}
@@ -247,15 +257,23 @@ public class PlayerActivity extends Activity {
     private void nextEpisode() { changeEpisode(index+1); }
     private void changeEpisode(int target) { if(target<0 || target>=episodes.size())return; rememberPosition(); index=target;store.lastEpisode(getIntent().getStringExtra("animeUrl"),episodes.get(index)); requestedPosition=store.position(episodes.get(index)); showControls(false); loadEpisode(); }
     private void updateTimeline() { if(player==null||clock==null||seek==null)return;long d=player.getDuration(),p=player.getCurrentPosition();clock.setText(format(p));if(totalClock!=null)totalClock.setText(format(d));if(!seek.isPressed())seek.setProgress(d>0?(int)Math.min(1000,p*1000/d):0); }
-    private void showControls(boolean visible) { if(visible)updateTimeline();controlsVisible=visible; controls.setVisibility(visible?View.VISIBLE:View.GONE); if(visible && playButton!=null) playButton.requestFocus(); else root.requestFocus(); }
+    private void scheduleControlsHide(){main.removeCallbacks(hideControls);if(controlsVisible&&foreground&&getWindow().getDecorView().hasWindowFocus())main.postDelayed(hideControls,5000);}
+    @Override public void onWindowFocusChanged(boolean focused){super.onWindowFocusChanged(focused);if(focused)scheduleControlsHide();else main.removeCallbacks(hideControls);}
+    @Override public void onUserInteraction(){super.onUserInteraction();scheduleControlsHide();}
+    private void showControls(boolean visible) { if(visible)updateTimeline();controlsVisible=visible; controls.setVisibility(visible?View.VISIBLE:View.GONE);episodeNumber.setVisibility(visible?View.VISIBLE:View.GONE);FrameLayout.LayoutParams noticePosition=(FrameLayout.LayoutParams)status.getLayoutParams();noticePosition.topMargin=dp(visible?72:27);status.setLayoutParams(noticePosition);main.removeCallbacks(hideControls);if(visible){scheduleControlsHide();if(playButton!=null)playButton.requestFocus();}else root.requestFocus(); }
     @Override public boolean dispatchKeyEvent(KeyEvent event) {
+        if(controlsVisible)scheduleControlsHide();
+        if(controlsVisible&&event.getKeyCode()==KeyEvent.KEYCODE_DPAD_UP){
+            if(event.getAction()==KeyEvent.ACTION_DOWN&&event.getRepeatCount()==0){if(seek.hasFocus())showControls(false);else seek.requestFocus();}return true;
+        }
+        if(controlsVisible&&seek.hasFocus()&&event.getKeyCode()==KeyEvent.KEYCODE_DPAD_DOWN){if(event.getAction()==KeyEvent.ACTION_DOWN&&playButton!=null)playButton.requestFocus();return true;}
         if(controlsVisible&&seek.hasFocus()&&event.getAction()==KeyEvent.ACTION_DOWN&&(event.getKeyCode()==KeyEvent.KEYCODE_DPAD_LEFT||event.getKeyCode()==KeyEvent.KEYCODE_DPAD_RIGHT)){jump((event.getKeyCode()==KeyEvent.KEYCODE_DPAD_RIGHT?1:-1)*store.seconds("timeline"),false);updateTimeline();return true;}
         if(!controlsVisible && event.getAction()==KeyEvent.ACTION_DOWN) {
             int key=event.getKeyCode();
             if(key==KeyEvent.KEYCODE_DPAD_CENTER || key==KeyEvent.KEYCODE_ENTER) { if(event.getRepeatCount()==0)toggle(); return true; }
             if(key==KeyEvent.KEYCODE_DPAD_LEFT) { jump(-store.seconds("backward"),false); return true; }
             if(key==KeyEvent.KEYCODE_DPAD_RIGHT) { jump(store.seconds("forward"),false); return true; }
-            if(key==KeyEvent.KEYCODE_DPAD_UP) { showControls(true); return true; }
+            if(key==KeyEvent.KEYCODE_DPAD_UP) { if(event.getRepeatCount()==0)showControls(true); return true; }
             if(key==KeyEvent.KEYCODE_DPAD_DOWN) return true;
         }
         if(event.getAction()==KeyEvent.ACTION_DOWN && event.getKeyCode()==KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) { if(event.getRepeatCount()==0)toggle(); return true; }
@@ -269,8 +287,8 @@ public class PlayerActivity extends Activity {
     private void hideNoticeLater() { main.removeCallbacks(hideNotice); main.postDelayed(hideNotice,1800); }
     private String format(long ms) { if(ms<0)return "--:--"; long sec=ms/1000; return String.format(Locale.ROOT,"%d:%02d",sec/60,sec%60); }
     private void releasePlayer() { seekBurst.reset(); main.removeCallbacks(timeout); main.removeCallbacks(videoTimeout); if(player!=null) { ExoPlayer old=player; player=null; surface.setPlayer(null); old.release(); } }
-    @Override protected void onPause() { returningServer=activeServer;returningPaused=player!=null&&!player.getPlayWhenReady();foreground=false; rememberPosition();++generation; releasePlayer(); if(surface!=null)surface.onPause(); super.onPause(); }
-    @Override protected void onResume() { super.onResume(); if(surface!=null)surface.onResume(); if(!foreground) { foreground=true; startedAt=SystemClock.elapsedRealtime(); Server previous=returningServer;returningServer=null; if(previous!=null && activeStream!=null && PlaybackRecovery.reuse(resolvedAt,startedAt))startStream(previous,activeStream);else if(previous!=null)selectServer(previous);else loadEpisode(); } }
+    @Override protected void onPause() { returningServer=activeServer;returningPaused=player!=null&&!player.getPlayWhenReady();foreground=false; main.removeCallbacks(hideControls);rememberPosition();++generation;cancelExtraction();releasePlayer(); if(surface!=null)surface.onPause(); super.onPause(); }
+    @Override protected void onResume() { super.onResume(); if(surface!=null)surface.onResume(); if(!foreground) { foreground=true; startedAt=SystemClock.elapsedRealtime(); Server previous=returningServer;returningServer=null; if(previous!=null && activeStream!=null && PlaybackRecovery.reuse(resolvedAt,startedAt)){long originalResolution=resolvedAt;startStream(previous,activeStream);resolvedAt=originalResolution;}else if(previous!=null){source.invalidate(previous,episodes.get(index));selectServer(previous);}else loadEpisode(); }scheduleControlsHide(); }
     @Override protected void onSaveInstanceState(Bundle out) { out.putInt("index",index); super.onSaveInstanceState(out); }
     @Override protected void onDestroy() { ProtectedPages.detach(this); ++generation; main.removeCallbacksAndMessages(null); releasePlayer(); io.shutdownNow(); super.onDestroy(); }
 }
